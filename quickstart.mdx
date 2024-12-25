@@ -1,86 +1,63 @@
 ---
-title: 'Quickstart'
-description: 'Start building awesome documentation in under 5 minutes'
+title: 'Create your first no-code directory website with Directify'
+sidebarTitle: 'Quickstart'
+description: 'Start building awesome directories in under 5 minutes'
 ---
 
-## Setup your development
+Unlike other No-Code tools, to create a directory with 
+Directify you don't need to create all the sections yourself, 
+do drag & drop blocks, etc.
 
-Learn how to update your docs locally and deploy them to the public.
+<Frame>
+  <img src="/images/toolhub.png" alt="Creating a directory demo" />
+</Frame>
 
-### Edit and preview
+Creating a directory with Directify is simple and straightforward. Just follow these steps:
 
-<AccordionGroup>
-  <Accordion icon="github" title="Clone your docs locally">
-    During the onboarding process, we created a repository on your Github with
-    your docs content. You can find this repository on our
-    [dashboard](https://dashboard.mintlify.com). To clone the repository
-    locally, follow these
-    [instructions](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
-    in your terminal.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Preview changes">
-    Previewing helps you make sure your changes look as intended. We built a
-    command line interface to render these changes locally. 1. Install the
-    [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the
-    documentation changes locally with this command: ``` npm i -g mintlify ```
-    2. Run the following command at the root of your documentation (where
-    `mint.json` is): ``` mintlify dev ```
-  </Accordion>
-</AccordionGroup>
+1. Enter your directory name - This will appear in the header
+2. Add a title - This helps describe what your directory is about
+3. Write a description - Give visitors more context about your directory
 
-### Deploy your changes
+That's all you need to get started! While there are many other customization options available, they're completely optional and can be configured later.
 
-<AccordionGroup>
+<Frame>
+  <img src="/images/quickstart-demo.gif" alt="Creating a directory demo" />
+</Frame>
 
-<Accordion icon="message-bot" title="Install our Github app">
-  Our Github app automatically deploys your changes to your docs site, so you
-  don't need to manage deployments yourself. You can find the link to install on
-  your [dashboard](https://dashboard.mintlify.com). Once the bot has been
-  successfully installed, there should be a check mark next to the commit hash
-  of the repo.
-</Accordion>
-<Accordion icon="rocket" title="Push your changes">
-  [Commit and push your changes to
-  Git](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository#about-git-push)
-  for your changes to update in your docs site. If you push and don't see that
-  the Github app successfully deployed your changes, you can also manually
-  update your docs through our [dashboard](https://dashboard.mintlify.com).
-</Accordion>
+Once your directory is created, you'll have access to the full suite of customization options to make it truly your own.
 
-</AccordionGroup>
+## Columns explained
 
-## Update your docs
+### Name
 
-Add content directly in your files with MDX syntax and React components. You can use any of our components, or even build your own.
+Your directory name appears next to your logo in the header. It helps visitors recognize your brand right away. You can change it anytime in settings or hide it completely - it's up to you!
 
-<CardGroup>
+### Title
 
-<Card title="Style Your Docs" icon="paintbrush" href="/settings/global">
-  Add flair to your docs with personalized branding.
-</Card>
+The title of the directory is displayed prominently in the header and serves as the main H1 heading for SEO purposes. It helps visitors and search engines understand what your directory is about. Like other elements, you can choose to hide it if it doesn't fit your design preferences.
+The title also will be used as the SEO title (meta title) for your website. 
 
-<Card
-  title="Add API Endpoints"
-  icon="square-code"
-  href="/api-playground/configuration"
->
-  Implement your OpenAPI spec and enable API user interaction.
-</Card>
+You can overwrite SEO metadata if you want to make them more specific.
 
-<Card
-  title="Integrate Analytics"
-  icon="chart-mixed"
-  href="/analytics/supported-integrations"
->
-  Draw insights from user interactions with your documentation.
-</Card>
+### Description
 
-<Card
-  title="Host on a Custom Domain"
-  icon="browser"
-  href="/settings/custom-domain/subdomain"
->
-  Keep your docs on your own website's subdomain.
-</Card>
+The description appears below the title in the header section and helps provide additional context about your directory. Like the title, it serves dual purposes - it's visible to visitors and also used as the meta description for SEO. You can customize or hide the description through the settings panel.
 
+---
+
+<CardGroup cols={2}>
+  <Card
+    title="Learn more about SEO"
+    icon="pen-to-square"
+    href="https://mintlify.com/docs/quickstart"
+  >
+    Learn more about SEO
+  </Card>
+  <Card
+    title="Learn more about directory columns"
+    icon="list-ul"
+    href="https://mintlify.com/docs/development"
+  >
+    Learn more about directory columns
+  </Card>
 </CardGroup>

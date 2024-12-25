@@ -22,24 +22,24 @@
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "name": "directify.app",
+    "url": "https://directify.app"
   },
   "anchors": [
     {
-      "name": "Documentation",
+      "name": "Roadmap",
       "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "url": "https://directify.canny.io"
     },
     {
       "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "icon": "discord",
+      "url": "https://discord.gg/skvRJ6JhEd"
     },
     {
       "name": "Blog",
       "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "url": "https://directify.app/blog"
     }
   ],
   "navigation": [
@@ -48,7 +48,8 @@
       "pages": [
         "introduction",
         "quickstart",
-        "development"
+        "listings",
+        "categories"
       ]
     },
     {

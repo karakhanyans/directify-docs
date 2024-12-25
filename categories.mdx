@@ -1,0 +1,90 @@
+---
+title: 'Add categories to your directory'
+sidebarTitle: 'Categories'
+description: 'Create, edit, and manage categories in your directory'
+---
+
+Categories help organize your listings and make them easier to discover. Here's a breakdown of all the available fields when creating or editing a category:
+
+### Required Fields
+
+- **Title** (Required) - The name of your category that will be displayed throughout the directory
+
+### Organization
+
+- **Parent Category** - Make this a sub-category by selecting a parent category
+- **Icon** - Choose an icon to visually represent this category
+  - Select from hundreds of built-in icons
+  - Icons appear in the sidebar and category cards
+
+### Content
+
+- **Content** (Optional) - Add rich markdown content to describe the category
+  - Write formatted text with markdown
+  - Add images and media
+  - Embed videos from YouTube/Vimeo using:
+    ```md
+    ::: @iframe https://www.youtube.com/embed/VIDEO_ID :::
+    ```
+
+### Visibility Settings
+
+- **Show on Sidebar** - Control category visibility in the navigation sidebar
+  - When disabled, the category won't appear in the sidebar menu
+  - Listings in hidden categories remain accessible through search and direct links
+
+- **Active** - Toggle the overall visibility of the category
+  - Inactive categories are completely hidden from the directory
+  - Use this to temporarily hide categories without deleting them
+
+<Frame>
+  <img src="/images/category-demo.png" alt="Adding a new category" />
+</Frame>
+
+## Best Practices
+
+1. Use clear, descriptive category names
+2. Create a logical hierarchy with parent/sub categories
+3. Add icons to make categories visually distinct
+4. Use content area to explain category purpose
+5. Keep your category structure simple and intuitive
+
+<Note>
+  While you can create unlimited categories, we recommend keeping the structure simple to help visitors easily find what they're looking for.
+</Note>
+
+
+---
+
+
+<CardGroup cols={2}>
+  <Card
+    title="Listing Import"
+    icon="pen-to-square"
+    href="https://mintlify.com/docs/quickstart"
+  >
+    Learn about importing listings
+  </Card>
+  <Card
+    title="ScreenshotOne"
+    icon="list-ul"
+    href="https://mintlify.com/docs/development"
+  >
+    Learn about ScreenshotOne integration
+  </Card>
+
+  <Card
+    title="SEO"
+    icon="pen-to-square"
+    href="https://mintlify.com/docs/quickstart"
+  >
+    Learn about SEO
+  </Card>
+  <Card
+    title="Custom Fields"
+    icon="list-ul"
+    href="https://mintlify.com/docs/development"
+  >
+    Learn about Custom Fields
+  </Card>
+</CardGroup>
