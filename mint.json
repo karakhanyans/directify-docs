@@ -3,16 +3,17 @@
   "name": "Directify",
   "logo": {
     "dark": "https://directify.app/images/logo.png",
-    "light": "https://directify.app/images/logo.png"
+    "light": "https://directify.app/images/logo.png",
+    "href": "https://directify.app/"
   },
-  "favicon": "https://directify.app/images/favicon/apple-touch-icon.png",
+  "favicon": "/logo/logo-small.png",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#ff9d0f",
+    "light": "#ff9d0f",
+    "dark": "#ff9d0f",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#ff9d0f",
+      "to": "#ff9d0f"
     }
   },
   "topbarLinks": [
@@ -47,9 +48,17 @@
       "group": "Get Started",
       "pages": [
         "introduction",
-        "quickstart",
+        "directories",
         "listings",
         "categories"
+      ]
+    },
+    {
+      "group": "Directories",
+      "pages": [
+        "directories/intro",
+        "directories/custom-domain",
+        "directories/customize-your-directory"
       ]
     },
     {
@@ -65,6 +74,8 @@
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify"
+    "x": "https://x.com/directifyapp",
+    "discord": "https://discord.gg/skvRJ6JhEd",
+    "youtube": "https://www.youtube.com/@karakhanyans"
   }
 }

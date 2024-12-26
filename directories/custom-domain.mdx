@@ -1,0 +1,81 @@
+---
+title: Connect your custom domain to your directory
+sidebarTitle: Custom domain
+icon: "globe"
+description: 'Learn how to connect your custom domain to your directory made with Directify'
+---
+
+After creating your directory with a default subdomain, you can connect your own custom domain to make your directory more professional and branded.
+
+## Setting up your custom domain
+
+Connecting your custom domain involves three main steps:
+
+1. Add your domain in Directify settings
+2. Configure DNS records at your domain provider
+3. Wait for DNS propagation (usually 24-48 hours)
+
+### Step 1: Add Your Domain
+
+In your directories list, click on "Click to set custom domain" button.
+
+1. Navigate to the "Custom Domain" section
+2. Enter your domain name (e.g., `directory.com`)
+3. Click "Next" to the DNS records section
+
+You can add either:
+- A root domain (e.g., `directory.com`)
+- A subdomain (e.g., `tools.directory.com`)
+
+<Frame>
+    <img src="/images/set-custom-domain.png" alt="Adding custom domain" />
+</Frame>
+
+<Note>
+    Make sure you own the domain before adding it. You'll need access to manage its DNS records.
+</Note>
+
+### Step 2: Configure DNS Records
+
+After adding your domain, you'll need to configure DNS records at your domain provider (like GoDaddy, Namecheap, or Google Domains).
+
+For root domains, add this A record:
+- Type: **A**
+- Hostname: `@` or your domain (e.g. `directory.com`) 
+- Value: `159.223.235.17`
+
+For subdomains, add this CNAME record:
+- Type: **CNAME**
+- Hostname: your subdomain (e.g. `tools.directory.com`)
+- Target: `your-directory.directify.app`
+- TTL: 43200 (or provider default)
+
+<Frame>
+    <img src="/images/set-dns.png" alt="Set DNS records" />
+</Frame>
+
+<Note>
+    If you're using a subdomain, you'll need to add a CNAME record instead of an A record.
+</Note>
+
+### Step 3: Wait for DNS Propagation
+
+After adding the records, it may take up to 24-48 hours for the changes to propagate.
+
+Once DNS records are updated, your custom domain will be active and your directory will be accessible at `https://your-domain.com`.
+
+<Frame>
+    <img src="/images/verify-domain.png" alt="Verify domain" />
+</Frame>
+
+<Note>
+    If the domain is not working, please check your DNS records and make sure they are correct. After verifying the records, you do this steps again to trigger verification process.
+</Note>
+
+### Verified
+
+After the domain is verified, you will see a green checkmark in the Directify settings.
+
+<Frame>
+    <img src="/images/verified.png" alt="Verified" />
+</Frame>
