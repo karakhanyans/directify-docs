@@ -1,0 +1,88 @@
+---
+title: 'Import and Export Blog Articles'
+sidebarTitle: 'Import and Export'
+icon: "arrow-down"
+description: 'Import and export blog articles in your business directory website'
+---
+
+Directify provides powerful import and export capabilities to help you manage your blog articles in bulk. You can easily import articles from a CSV file, including WordPress exports, and export your existing articles to CSV format.
+
+## Importing Articles
+
+To import articles into your directory:
+
+1. Download the example CSV file to see the correct format
+2. Prepare your CSV file with the following columns:
+
+### Required Fields
+- **title** - The article title (required, max 255 characters)
+- **content** - The main content of your article
+
+### Optional Fields
+- **slug** - URL-friendly version of the title (max 255 characters, auto-generated if left blank)
+- **published** - Whether the article should be published (true/false)
+- **published_at** - Publication date and time in UTC format
+- **thumbnail_url** - URL to the article's featured image
+- **meta_title** - Custom SEO title
+- **meta_description** - Custom SEO description
+
+### WordPress Migration
+
+You can easily migrate your existing WordPress blog by:
+
+1. Exporting your WordPress articles to XML
+2. Using our WordPress converter tool to transform the XML to CSV
+3. Importing the resulting CSV file
+
+### Import Settings
+
+When importing articles, you can configure:
+
+1. **Update Existing** - Choose whether to update existing articles
+2. **Default Publishing** - Set whether imported articles should be published by default
+3. **Preserve Dates** - Keep original publication dates from the import file
+
+<Frame>
+  <img src="/images/article-import-demo.png" alt="Importing articles demo" />
+</Frame>
+
+<Note>
+  Make sure your CSV file uses UTF-8 encoding for proper handling of special characters and formatting.
+</Note>
+
+### Import Results
+
+After the import completes, you'll see a notification in the top-right corner with:
+
+- Number of successfully imported articles
+- Number of failed imports
+- Option to download detailed results
+
+The results file includes all attempted imports with status and error messages. To review failures:
+
+1. Download the results CSV
+2. Scroll right to see the "Error" column
+3. Review specific error messages for each failed row
+
+Common error messages include:
+- Invalid title length
+- Missing required fields
+- Malformed dates
+- Invalid URLs
+
+<Frame>
+  <img src="/images/import-results-demo.png" alt="Import results notification and CSV" />
+</Frame>
+
+<Tip>
+  Use the error messages to correct issues in your import file, then retry importing the failed rows.
+</Tip>
+
+
+## Exporting Articles
+
+You can export all your articles to CSV format for backup or bulk editing purposes. The exported file will contain all the fields listed above.
+
+<Warning>
+  Large blogs with many articles may take a few moments to export. The system will notify you once your export is ready for download.
+</Warning>

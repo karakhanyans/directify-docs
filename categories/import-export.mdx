@@ -36,6 +36,34 @@ When importing categories, you can configure:
   Make sure your CSV file uses UTF-8 encoding for proper handling of special characters.
 </Note>
 
+### Import Results
+
+After the import completes, you'll see a notification in the top-right corner with:
+
+- Number of successfully imported articles
+- Number of failed imports
+- Option to download detailed results
+
+The results file includes all attempted imports with status and error messages. To review failures:
+
+1. Download the results CSV
+2. Scroll right to see the "Error" column
+3. Review specific error messages for each failed row
+
+Common error messages include:
+- Invalid title length
+- Missing required fields
+- Malformed dates
+- Invalid URLs
+
+<Frame>
+  <img src="/images/import-results-demo.png" alt="Import results notification and CSV" />
+</Frame>
+
+<Tip>
+  Use the error messages to correct issues in your import file, then retry importing the failed rows.
+</Tip>
+
 ## Exporting Categories
 
 You can export all your categories to CSV format for backup or bulk editing purposes. The exported file will contain all the fields listed above.

@@ -1,9 +1,67 @@
 ---
 title: 'Add Article to your directory '
-description: 'Add an article to your blog'
+description: 'Learn how to create and manage blog articles for your directory website with rich content, scheduling options, and media management'
 sidebarTitle: 'Add Article'
 icon: 'file-plus'
 ---
 
-# Add Article
+Articles allow you to create blog content for your directory website. Here's a breakdown of the available fields and settings when creating or editing an article:
+
+### Basic Information
+
+- **Title** (Required) - The title of your article
+- **Slug** - URL-friendly version of the title
+  - Auto-generated from title if left blank
+  - Can be customized for SEO purposes
+
+### Content Options
+
+- **Content Format** - Choose between:
+  - Rich Text Editor - Visual WYSIWYG editor
+  - Markdown - Write in markdown format
+    - Supports standard markdown syntax
+    - Embed videos using:
+      ```md
+      ::: @iframe https://www.youtube.com/embed/VIDEO_ID :::
+      ```
+
+### Publishing Settings
+
+- **Published** - Toggle article visibility
+  - When enabled, article is live on your site
+  - When disabled, article is hidden from public view
+
+- **Published At** - Schedule publication date/time
+  - Set future date to schedule posts
+  - Defaults to current time in UTC
+
+### Media
+
+- **Thumbnail** - Featured image for the article
+  - Upload image directly
+  - Supports image editing with preset aspect ratios:
+    - 16:9 (Widescreen)
+    - 4:3 (Standard)
+    - 1:1 (Square)
+
+- **Thumbnail URL** - Alternative to uploaded thumbnail
+  - Use external image URL
+  - Only used if no thumbnail is uploaded
+
+## Best Practices
+
+1. Use clear, descriptive titles
+2. Add engaging thumbnails
+3. Format content for readability
+4. Schedule posts strategically
+5. Preview before publishing
+
+<Frame>
+  <img src="/images/article-demo.png" alt="Adding a new article" />
+</Frame>
+
+<Note>
+  Rich media like images and videos help make your articles more engaging. Use the built-in file upload capabilities to easily add media to your content.
+</Note>
+
 
