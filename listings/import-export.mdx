@@ -1,0 +1,60 @@
+---
+title: 'Import and Export Listings'
+sidebarTitle: 'Import and Export'
+icon: "arrow-down"
+description: 'Import and export listings in your business directory website'
+---
+
+Directify provides powerful import and export capabilities to help you manage your listings in bulk. You can easily import listings from a CSV file and export your existing listings to CSV format.
+
+## Importing Listings
+
+To import listings into your directory:
+
+1. Download the example CSV file to see the correct format
+2. Prepare your CSV file with the following columns:
+
+### Required Fields
+- **name** - The listing name (required, max 255 characters)
+
+### Optional Fields
+- **description** - A brief description of the listing
+- **content** - Detailed content/body text for the listing
+- **url** - Website URL (max 255 characters) 
+- **phone_number** - Contact phone number (max 255 characters)
+- **email** - Contact email address (max 255 characters)
+- **address** - Physical address (max 255 characters)
+- **tags** - Comma separated list of tags (max 255 characters)
+- **is_no_follow** - SEO nofollow setting (1/0, true/false, yes/no, y/n)
+- **is_featured** - Featured listing status (1/0, true/false, yes/no, y/n)
+- **is_active** - Published status (1/0, true/false, yes/no, y/n)
+- **logo_url** - URL to listing logo image (max 255 characters)
+- **image_url** - URL to listing cover image (max 255 characters)
+
+<Note>
+  **Important:** The boolean fields (is_no_follow, is_featured, is_active) should be set to 1 (true) or 0 (false) or y (yes) or n (no).
+</Note>
+
+### Import Settings
+
+When importing, you can configure:
+
+1. **Categories** - Assign imported listings to specific categories
+2. **Update Existing** - Choose whether to update existing records
+3. **Default Publishing** - Set whether imported listings should be published by default (this will override the is_active field in the CSV file)
+
+<Frame>
+  <img src="/images/import-demo.png" alt="Importing listings demo" />
+</Frame>
+
+<Note>
+  Make sure your CSV file uses UTF-8 encoding for proper handling of special characters.
+</Note>
+
+## Exporting Listings
+
+You can export all your listings to CSV format for backup or bulk editing purposes. The exported file will contain all the fields listed above.
+
+<Warning>
+  Large directories may take a few moments to export. The system will notify you once your export is ready for download.
+</Warning>

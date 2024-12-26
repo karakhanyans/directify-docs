@@ -47,18 +47,42 @@
     {
       "group": "Get Started",
       "pages": [
-        "introduction",
-        "directories",
-        "listings",
-        "categories"
+        "introduction"
       ]
     },
     {
       "group": "Directories",
       "pages": [
-        "directories/intro",
+        "directories/create-directory",
+        "directories/subdomain",
         "directories/custom-domain",
-        "directories/customize-your-directory"
+        "directories/customize-your-directory",
+        "directories/social-links",
+        "directories/listings-route",
+        "directories/team"
+      ]
+    },
+    {
+      "group": "Listings",
+      "pages": [
+        "listings/add-listing",
+        "listings/import-export",
+        "listings/custom-fields",
+        "listings/related-articles"
+      ]
+    },
+    {
+      "group": "Categories",
+      "pages": [
+        "categories/add-category",
+        "categories/import-export"
+      ]
+    },
+    {
+      "group": "Blog",
+      "pages": [
+        "blog/add-article",
+        "blog/import-export"
       ]
     },
     {
