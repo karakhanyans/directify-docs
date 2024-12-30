@@ -79,6 +79,12 @@
       ]
     },
     {
+      "group": "General Settings",
+      "pages": [
+        "settings/routes"
+      ]
+    },
+    {
       "group": "Blog",
       "pages": [
         "blog/add-article",

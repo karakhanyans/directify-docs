@@ -1,0 +1,75 @@
+---
+title: 'Custom Routes for Your Directory'
+sidebarTitle: 'Routes'
+description: 'Customize your routes for your directory made with Directify'
+---
+
+You can customize various routes in your directory to match your branding and preferences. This includes routes for listings, categories, blog posts, custom pages, and forms.
+
+## Listings Routes
+
+Configure how your listing URLs are structured:
+
+- **Listing Route**: Set the prefix for listing pages (default: `listings`)
+  - Example: If set to `tools`, listings will be at `https://yourdomain.com/tools/{listing-slug}`
+
+- **Show Listings Through Category**: When enabled, listings appear under their category URLs
+  - Default: `https://yourdomain.com/listings/{listing-slug}`
+  - With categories: `https://yourdomain.com/{category-slug}/{listing-slug}`
+   
+  <Note>
+    If a listing belongs to multiple categories, it will be accessible through all of them.
+  </Note>
+
+  <Warning>
+    This cannot be used together with "Hide Category Slug" option.
+    You need to choose one.
+  </Warning>
+
+- **Create Listing Route**: Customize the URL for creating new listings (default: `create`)
+  - Example: `https://yourdomain.com/listings/create`
+
+  <Note>
+    This one is used for public submissions route.
+  </Note>
+
+## Category Routes
+
+Manage how category pages are accessed:
+
+- **Category Route**: Set the prefix for category pages
+  - Example: `https://yourdomain.com/categories/{category-slug}`
+
+- **Hide Category Slug**: Remove the category prefix from URLs
+  - Default: `https://yourdomain.com/categories/{category-slug}`
+  - Hidden: `https://yourdomain.com/{category-slug}`
+
+  <Warning>
+    This cannot be used together with "Show Listings Through Category" option.
+    You need to choose one.
+  </Warning>
+
+## Blog Routes
+
+Configure your blog URL structure:
+
+- **Blog Route**: Set the prefix for blog articles
+  - Example: `https://yourdomain.com/blog/{article-slug}`
+
+
+## Custom Pages Routes
+
+Set up URLs for custom pages:
+
+- **Custom Page Route**: Define the prefix for custom pages
+  - Example: `https://yourdomain.com/pages/{custom-page-slug}`
+
+## Form Routes
+
+Customize form page URLs:
+
+- **Form Route**: Set the prefix for form pages
+  - Example: `https://yourdomain.com/forms/{form-slug}`
+
+
+
