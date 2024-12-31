@@ -85,6 +85,12 @@
       ]
     },
     {
+      "group": "Paid Submissions",
+      "pages": [
+        "paid-submissions/stripe"
+      ]
+    },
+    {
       "group": "Blog",
       "pages": [
         "blog/add-article",
