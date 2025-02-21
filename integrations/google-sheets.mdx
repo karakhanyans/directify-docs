@@ -1,0 +1,67 @@
+---
+title: 'Google Sheets Integration'
+sidebarTitle: 'Google Sheets'
+description: 'Sync your directory listings with Google Sheets'
+icon: 'table'
+---
+
+Integrating Google Sheets with Directify has been a highly requested feature, and it is now available! 
+This integration allows users to create directories from Google Sheets, back up their data, and seamlessly sync listings between Directify and Google Sheets. 
+
+Here’s a detailed guide on how to set it up and use it effectively.
+
+## **Connecting Google Sheets Integration**
+
+You can connect Google Sheets to Directify in two ways:
+1. **Through Listings:** Navigate to your listings and connect directly.
+2. **Through Settings:** Go to *Settings > Integrations* and connect your Google Sheets API.
+
+For this guide, we'll use the Listings method.
+
+![](https://cdn.directify.app/article/Me33ZfTgZ7CSbQAXMWXEY2vUCLCNc2AmOfr5OqVm.png)
+
+### **Step 1: Connecting Google Sheets**
+Once you initiate the integration, a Google authentication screen will appear, prompting you to grant access to Google Sheets. After granting access, Directify will connect to your Google account, enabling you to create directories from Google Sheets effortlessly.
+
+### **Step 2: Creating a Template**
+After connecting, you must create a template. This ensures that all necessary fields, including listing fields, categories, tags, and custom fields, are included in your Google Sheet.
+
+![](https://cdn.directify.app/article/pPPNepcV0BZb4CyhqgypgIdbFr0fGGjekjI0JrQp.png)
+
+> You can also manually connect your Google Sheets URL, but it will not automatically include the required fields. If you only need specific details like *name* and *URL*, you can use this option. However, using the *Create Template* function is recommended for a complete data set.
+
+### **Step 3: Populating Your Google Sheet**
+Once the template is created, you need to:
+- Manually populate the fields and add listings.
+- Push existing listings from Directify to Google Sheets.
+- Enable two-way synchronization for real-time updates.
+
+## **Enabling Two-Way Synchronization**
+
+### **Step 4: Configuring Sync Settings**
+In the integration settings, select the *Two-Way Sync* option and click *Submit*. This feature allows you to:
+- Import existing listings into Google Sheets.
+- Modify and update listings directly from Google Sheets.
+- Sync data back to Directify, helping you create websites from Google Sheets dynamically.
+
+![](https://cdn.directify.app/article/m4cscbkn6C2n2OqnFxJ09BrDTyhOWruT2zl2m4pJ.png)
+
+Additionally, you can manually push or pull data:
+- *Push to Google Sheets:* Uploads data from Directify to Google Sheets.
+- *Pull from Google Sheets:* Fetches the latest data from Google Sheets into Directify.
+
+### **Step 5: Updating Listings**
+To update a listing, edit the relevant field in Google Sheets and then pull data into Directify. For example, let's say you have a listing with the name "Larafast", if you change *Larafast* to *Larafast Updated Name* in Google Sheets, pulling data will reflect the update in Directify.
+
+Similarly, updates made in Directify will sync back to Google Sheets when two-way synchronization is enabled.
+
+If you miss adding **slug** into your listing, or if you want it to be automatically generated, leave the column blank, and after syncing listings from Google Sheets, it will trigger another event, which will update the slug in the Google Sheet automatically, for further matching of the listings.
+
+## **Automated Daily Sync**
+Directify also runs an automated sync every midnight to ensure all changes in Google Sheets are reflected. However, if you need real-time updates, you can manually pull data anytime.
+
+## **Final Thoughts**
+This Google Sheets integration is a simple yet powerful tool for managing and backing up your Directify listings. Whether you need a real-time sync, want to create a directory from Google Sheets, or even build a website from Google Sheets, this feature enhances efficiency and ensures your data is always up-to-date.
+
+Cheers, and happy listing!
+

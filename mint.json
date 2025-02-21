@@ -79,6 +79,14 @@
       ]
     },
     {
+      "group": "Integrations",
+      "pages": [
+        "integrations/screenshotone",
+        "integrations/openai",
+        "integrations/google-sheets"
+      ]
+    },
+    {
       "group": "General Settings",
       "pages": [
         "settings/routes"
