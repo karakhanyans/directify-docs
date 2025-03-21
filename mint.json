@@ -83,7 +83,8 @@
       "pages": [
         "integrations/screenshotone",
         "integrations/openai",
-        "integrations/google-sheets"
+        "integrations/google-sheets",
+        "integrations/webhooks"
       ]
     },
     {

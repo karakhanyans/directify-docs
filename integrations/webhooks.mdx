@@ -1,0 +1,97 @@
+---
+title: 'Webhooks'
+sidebarTitle: 'Webhooks'
+description: 'Receive real-time notifications when events occur in your Directify account'
+icon: 'webhook'
+---
+
+Webhooks allow you to receive real-time notifications when events occur in your Directify account. When an event occurs, we'll send an HTTP POST request to the URL you specify.
+
+## Security
+
+Each webhook request includes a signature in the `X-Directify-Signature` header. You should verify this signature to ensure the request came from Directify.
+
+### Verifying Signatures
+
+Here's how to verify the signature:
+
+```php
+// PHP example
+$payload = file_get_contents('php://input');
+$signature = $_SERVER['HTTP_X_DIRECTIFY_SIGNATURE'];
+$secret = 'your_webhook_secret';
+
+$calculatedSignature = hash_hmac('sha256', $payload, $secret);
+
+if (hash_equals($calculatedSignature, $signature)) {
+    // Signature is valid
+} else {
+    // Signature is invalid
+}
+```
+
+## Request Format
+
+All webhook requests are sent as HTTP POST requests with a JSON payload. The following headers are included:
+
+- `Content-Type: application/json`
+- `X-Directify-Signature`: HMAC SHA-256 signature
+- `X-Directify-Event`: The name of the event (e.g., `project.created`)
+
+## Payload Format
+
+The payload includes the following fields:
+
+| Field | Description |
+|-------|-------------|
+| `event` | The name of the event |
+| `timestamp` | The Unix timestamp when the event occurred |
+| `id` | The ID of the affected resource |
+| `model` | The type of resource (e.g., Project) |
+| `data` | The full resource data |
+| `changes` | For update events, the fields that were changed (before and after) |
+
+<Note>
+    For listings, the `model` will be `Project`, and the events are also prefixed with `project` as that's how we handle them internally.
+</Note>
+
+## Available Events
+
+The following events are available:
+
+| Event | Description |
+|-------|-------------|
+| `project.created` | Listing Created |
+| `project.updated` | Listing Updated |
+| `project.deleted` | Listing Deleted |
+| `lead.created` | Lead Created |
+| `lead.updated` | Lead Updated |
+| `lead.deleted` | Lead Deleted |
+| `form.created` | Form Created |
+| `form.updated` | Form Updated |
+| `form.deleted` | Form Deleted |
+| `directory.created` | Directory Created |
+| `directory.updated` | Directory Updated |
+| `directory.deleted` | Directory Deleted |
+| `custompage.created` | Custom Page Created |
+| `custompage.updated` | Custom Page Updated |
+| `custompage.deleted` | Custom Page Deleted |
+| `customfield.created` | Custom Field Created |
+| `customfield.updated` | Custom Field Updated |
+| `customfield.deleted` | Custom Field Deleted |
+| `ad.created` | Ad Created |
+| `ad.updated` | Ad Updated |
+| `ad.deleted` | Ad Deleted |
+| `article.created` | Article Created |
+| `article.updated` | Article Updated |
+| `article.deleted` | Article Deleted |
+| `tag.created` | Tag Created |
+| `tag.updated` | Tag Updated |
+| `tag.deleted` | Tag Deleted |
+
+## Best Practices
+
+- Always verify the signature of incoming webhook requests
+- Implement idempotency to handle duplicate webhook deliveries
+- Respond quickly to webhook requests (within 5 seconds)
+- Implement proper error handling for webhook processing
