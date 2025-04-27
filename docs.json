@@ -54,7 +54,8 @@
               "integrations/screenshotone",
               "integrations/openai",
               "integrations/google-sheets",
-              "integrations/webhooks"
+              "integrations/webhooks",
+              "integrations/google-chrome-extension"
             ]
           },
           {
