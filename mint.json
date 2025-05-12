@@ -85,7 +85,8 @@
         "integrations/openai",
         "integrations/google-sheets",
         "integrations/webhooks",
-        "integrations/google-chrome-extension"
+        "integrations/google-chrome-extension",
+        "integrations/seobotai"
       ]
     },
     {
