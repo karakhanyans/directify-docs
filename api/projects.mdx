@@ -1,0 +1,333 @@
+---
+title: "Listings"
+icon: "📋"
+description: "Manage listings through the Directify API - create, read, update, and delete listings with full CRUD operations."
+---
+
+## Listings
+
+In Directify, **listings** are the items that appear in your directory. These can be tools, services, products, or any other items you want to showcase. The API endpoints use "projects" in the URL, but they refer to listings in your directory.
+
+### Get Directory Listings
+
+Retrieve all listings for a specific directory with pagination.
+
+```http
+GET /api/directories/{directory_id}/projects
+```
+
+**Parameters:**
+- `directory_id` (integer, required): The ID of the directory
+- `page` (integer, optional): Page number for pagination (default: 1)
+
+**Response:**
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "React.js",
+      "slug": "react-js",
+      "description": "A JavaScript library for building user interfaces",
+      "image_url": "https://example.com/images/react.jpg",
+      "logo_url": "https://example.com/logos/react.png",
+      "url": "https://reactjs.org",
+      "categories": [
+        {
+          "id": 1,
+          "title": "Frontend",
+          "parent_title": "Web Development"
+        }
+      ],
+      "tags": [
+        {
+          "id": 1,
+          "title": "Open Source",
+          "slug": "open-source",
+          "color": "#3B82F6",
+          "text_color": "#FFFFFF",
+          "is_active": true
+        }
+      ],
+      "listing_url": "https://your-directify-domain.com/app/1/projects/1/edit",
+      "is_active": true,
+      "is_featured": false,
+      "created_at": "2024-01-15T10:30:00.000000Z",
+      "updated_at": "2024-01-15T10:30:00.000000Z",
+      "pricing": "$0 - $100/month",
+      "job_type": "Full-time"
+    }
+  ],
+  "links": {
+    "first": "https://your-directify-domain.com/api/directories/1/projects?page=1",
+    "last": "https://your-directify-domain.com/api/directories/1/projects?page=5",
+    "prev": null,
+    "next": "https://your-directify-domain.com/api/directories/1/projects?page=2"
+  },
+  "meta": {
+    "current_page": 1,
+    "from": 1,
+    "last_page": 5,
+    "per_page": 100,
+    "to": 100,
+    "total": 450
+  }
+}
+```
+
+### Get Single Listing
+
+Retrieve a specific listing by ID.
+
+```http
+GET /api/directories/{directory_id}/projects/{project_id}
+```
+
+**Parameters:**
+- `directory_id` (integer, required): The ID of the directory
+- `project_id` (integer, required): The ID of the listing
+
+**Response:**
+
+```json
+{
+  "data": {
+    "id": 1,
+    "name": "React.js",
+    "slug": "react-js",
+    "description": "A JavaScript library for building user interfaces",
+    "image_url": "https://example.com/images/react.jpg",
+    "logo_url": "https://example.com/logos/react.png",
+    "url": "https://reactjs.org",
+    "categories": [
+      {
+        "id": 1,
+        "title": "Frontend",
+        "parent_title": "Web Development"
+      }
+    ],
+    "tags": [
+      {
+        "id": 1,
+        "title": "Open Source",
+        "slug": "open-source",
+        "color": "#3B82F6",
+        "text_color": "#FFFFFF",
+        "is_active": true
+      }
+    ],
+    "listing_url": "https://your-directify-domain.com/app/1/projects/1/edit",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2024-01-15T10:30:00.000000Z",
+    "updated_at": "2024-01-15T10:30:00.000000Z",
+    "pricing": "$0 - $100/month",
+    "job_type": "Full-time"
+  }
+}
+```
+
+### Check Listing Exists
+
+Check if a listing with a specific URL already exists in the directory.
+
+```http
+POST /api/directories/{directory_id}/projects/exists
+```
+
+**Parameters:**
+- `directory_id` (integer, required): The ID of the directory
+
+**Request Body:**
+
+```json
+{
+  "url": "https://example.com"
+}
+```
+
+**Response (Listing exists):**
+
+```json
+{
+  "message": "Listing already exists in this directory"
+}
+```
+
+**Response (Listing doesn't exist):**
+
+```json
+{
+  "message": "Listing does not exist in this directory"
+}
+```
+
+### Create Listing
+
+Create a new listing in the directory.
+
+```http
+POST /api/directories/{directory_id}/projects
+```
+
+**Parameters:**
+- `directory_id` (integer, required): The ID of the directory
+
+**Request Body:**
+
+```json
+{
+  "url": "https://example.com",
+  "name": "Example Tool",
+  "description": "A great tool for developers",
+  "category_id": 1,
+  "categories": [1, 2],
+  "tags": [1, 3],
+  "pricing": "Free",
+  "job_type": "Full-time",
+  "is_active": true,
+  "is_featured": false
+}
+```
+
+**Response:**
+
+```json
+{
+  "data": {
+    "id": 123,
+    "name": "Example Tool",
+    "slug": "example-tool",
+    "description": "A great tool for developers",
+    "image_url": null,
+    "logo_url": null,
+    "url": "https://example.com",
+    "categories": [
+      {
+        "id": 1,
+        "title": "Web Development",
+        "parent_title": null
+      },
+      {
+        "id": 2,
+        "title": "Frontend",
+        "parent_title": "Web Development"
+      }
+    ],
+    "tags": [
+      {
+        "id": 1,
+        "title": "Open Source",
+        "slug": "open-source",
+        "color": "#3B82F6",
+        "text_color": "#FFFFFF",
+        "is_active": true
+      },
+      {
+        "id": 3,
+        "title": "Free Tier",
+        "slug": "free-tier",
+        "color": "#10B981",
+        "text_color": "#FFFFFF",
+        "is_active": true
+      }
+    ],
+    "listing_url": "https://your-directify-domain.com/app/1/projects/123/edit",
+    "is_active": true,
+    "is_featured": false,
+    "created_at": "2024-01-15T10:30:00.000000Z",
+    "updated_at": "2024-01-15T10:30:00.000000Z",
+    "pricing": "Free",
+    "job_type": "Full-time"
+  }
+}
+```
+
+### Update Listing
+
+Update an existing listing.
+
+```http
+PUT /api/directories/{directory_id}/projects/{project_id}
+```
+
+**Parameters:**
+- `directory_id` (integer, required): The ID of the directory
+- `project_id` (integer, required): The ID of the listing
+
+**Request Body:**
+
+```json
+{
+  "url": "https://example.com",
+  "name": "Updated Example Tool",
+  "description": "An updated description for the tool",
+  "categories": [1],
+  "tags": [1],
+  "pricing": "Free - $50/month",
+  "job_type": "Part-time",
+  "is_active": true,
+  "is_featured": true
+}
+```
+
+**Response:**
+
+```json
+{
+  "data": {
+    "id": 123,
+    "name": "Updated Example Tool",
+    "slug": "updated-example-tool",
+    "description": "An updated description for the tool",
+    "image_url": "https://example.com/images/updated.jpg",
+    "logo_url": "https://example.com/logos/updated.png",
+    "url": "https://example.com",
+    "categories": [
+      {
+        "id": 1,
+        "title": "Web Development",
+        "parent_title": null
+      }
+    ],
+    "tags": [
+      {
+        "id": 1,
+        "title": "Open Source",
+        "slug": "open-source",
+        "color": "#3B82F6",
+        "text_color": "#FFFFFF",
+        "is_active": true
+      }
+    ],
+    "listing_url": "https://your-directify-domain.com/app/1/projects/123/edit",
+    "is_active": true,
+    "is_featured": true,
+    "created_at": "2024-01-15T10:30:00.000000Z",
+    "updated_at": "2024-01-15T11:45:00.000000Z",
+    "pricing": "Free - $50/month",
+    "job_type": "Part-time"
+  }
+}
+```
+
+### Delete Listing
+
+Delete a listing from the directory.
+
+```http
+DELETE /api/directories/{directory_id}/projects/{project_id}
+```
+
+**Parameters:**
+- `directory_id` (integer, required): The ID of the directory
+- `project_id` (integer, required): The ID of the listing
+
+**Response:**
+
+```json
+{
+  "message": "Project deleted successfully"
+}
+``` 

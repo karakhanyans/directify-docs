@@ -114,6 +114,13 @@
         "custom-pages/pages",
         "custom-pages/links"
       ]
+    },
+    {
+      "group": "API",
+      "pages": [
+        "api/api"
+        
+      ]
     }
   ],
   "footerSocials": {

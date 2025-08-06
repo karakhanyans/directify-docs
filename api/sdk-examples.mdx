@@ -1,0 +1,98 @@
+---
+title: "SDK Examples"
+icon: "💻"
+description: "Code examples for integrating with the Directify API using JavaScript, PHP, and Python."
+---
+
+## SDK Examples
+
+### JavaScript/Node.js
+
+```javascript
+const axios = require('axios');
+
+const api = axios.create({
+  baseURL: 'https://directify.app/api',
+  headers: {
+    'Authorization': `Bearer ${process.env.DIRECTIFY_API_TOKEN}`,
+    'Content-Type': 'application/json'
+  }
+});
+
+// Get all directories
+const directories = await api.get('/directories');
+
+// Create a new listing
+const listing = await api.post('/directories/1/projects', {
+  url: 'https://example.com',
+  name: 'My Tool',
+  description: 'A great tool',
+  categories: [1, 2],
+  tags: [1],
+  pricing: 'Free'
+});
+```
+
+### PHP
+
+```php
+use Illuminate\Support\Facades\Http;
+
+$response = Http::withHeaders([
+    'Authorization' => 'Bearer ' . env('DIRECTIFY_API_TOKEN'),
+    'Content-Type' => 'application/json',
+])
+->baseUrl('https://directify.app/api')
+->get('/directories');
+
+$directories = $response->json();
+
+// Create a listing
+$listing = Http::withHeaders([
+    'Authorization' => 'Bearer ' . env('DIRECTIFY_API_TOKEN'),
+    'Content-Type' => 'application/json',
+])
+->baseUrl('https://directify.app/api')
+->post('/directories/1/projects', [
+    'url' => 'https://example.com',
+    'name' => 'My Tool',
+    'description' => 'A great tool',
+    'categories' => [1, 2],
+    'tags' => [1],
+    'pricing' => 'Free'
+])->json();
+```
+
+### Python
+
+```python
+import requests
+
+headers = {
+    'Authorization': f'Bearer {os.environ["DIRECTIFY_API_TOKEN"]}',
+    'Content-Type': 'application/json'
+}
+
+base_url = 'https://directify.app/api'
+
+# Get all directories
+response = requests.get(f'{base_url}/directories', headers=headers)
+directories = response.json()
+
+# Create a listing
+listing_data = {
+    'url': 'https://example.com',
+    'name': 'My Tool',
+    'description': 'A great tool',
+    'categories': [1, 2],
+    'tags': [1],
+    'pricing': 'Free'
+}
+
+response = requests.post(
+    f'{base_url}/directories/1/projects',
+    headers=headers,
+    json=listing_data
+)
+listing = response.json()
+``` 

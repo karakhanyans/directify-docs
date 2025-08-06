@@ -1,0 +1,42 @@
+---
+title: "Categories"
+icon: "🏷️"
+description: "Retrieve and manage categories for directories through the Directify API."
+---
+
+## Categories
+
+### Get Directory Categories
+
+Retrieve all active categories for a specific directory.
+
+```http
+GET /api/directories/{directory_id}/categories
+```
+
+**Parameters:**
+- `directory_id` (integer, required): The ID of the directory
+
+**Response:**
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "Web Development",
+      "parent_title": null
+    },
+    {
+      "id": 2,
+      "title": "Frontend",
+      "parent_title": "Web Development"
+    },
+    {
+      "id": 3,
+      "title": "Backend",
+      "parent_title": "Web Development"
+    }
+  ]
+}
+``` 

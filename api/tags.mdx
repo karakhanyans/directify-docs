@@ -1,0 +1,47 @@
+---
+title: "Tags"
+icon: "🏷️"
+description: "Retrieve and manage tags for directories through the Directify API."
+---
+
+## Tags
+
+### Get Directory Tags
+
+Retrieve all active tags for a specific directory.
+
+```http
+GET /api/directories/{directory_id}/tags
+```
+
+**Parameters:**
+- `directory_id` (integer, required): The ID of the directory
+
+**Response:**
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "title": "Open Source",
+      "slug": "open-source",
+      "color": "#3B82F6",
+      "text_color": "#FFFFFF",
+      "is_active": true,
+      "created_at": "2024-01-15T10:30:00.000000Z",
+      "updated_at": "2024-01-15T10:30:00.000000Z"
+    },
+    {
+      "id": 2,
+      "title": "Free Tier",
+      "slug": "free-tier",
+      "color": "#10B981",
+      "text_color": "#FFFFFF",
+      "is_active": true,
+      "created_at": "2024-01-15T10:30:00.000000Z",
+      "updated_at": "2024-01-15T10:30:00.000000Z"
+    }
+  ]
+}
+``` 

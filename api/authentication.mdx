@@ -1,0 +1,84 @@
+---
+title: "Authentication"
+icon: "🔐"
+description: "Learn how to authenticate with the Directify API using Laravel Sanctum tokens."
+---
+
+## Authentication
+
+All API endpoints require authentication using Laravel Sanctum. Include your API token in the Authorization header:
+
+```bash
+Authorization: Bearer YOUR_API_TOKEN
+```
+
+To get your API token, go to your Directify dashboard and click on Settings->API. Then click on "Key" icon to generate a new token and copy the token.
+
+## Base URL
+
+```
+https://directify.app/api
+```
+
+## Rate Limiting
+
+API requests are limited to 60 requests per minute per authenticated user.
+
+## Error Responses
+
+### Validation Errors
+
+When request validation fails, the API returns a 422 status code with validation error details:
+
+```json
+{
+  "message": "The given data was invalid.",
+  "errors": {
+    "url": [
+      "The url field is required."
+    ],
+    "category_id": [
+      "The selected category id is invalid."
+    ]
+  }
+}
+```
+
+### Authentication Errors
+
+When authentication fails, the API returns a 401 status code:
+
+```json
+{
+  "message": "Unauthenticated."
+}
+```
+
+### Authorization Errors
+
+When the user doesn't have access to a directory, the API returns a 403 status code:
+
+```json
+{
+  "message": "You do not own this directory"
+}
+```
+
+### Not Found Errors
+
+When a resource is not found, the API returns a 404 status code:
+
+```json
+{
+  "message": "No query results for model [App\\Models\\Project] 123"
+}
+```
+
+## Best Practices
+
+1. **Always check if a listing exists** before creating a new one using the `/exists` endpoint
+2. **Use pagination** when retrieving large lists of listings
+3. **Include custom field values** in your listing creation/update requests
+4. **Validate category and tag IDs** before sending them in requests
+5. **Handle rate limiting** by implementing exponential backoff for failed requests
+6. **Cache directory metadata** like categories, tags, and custom fields to reduce API calls 

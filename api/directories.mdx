@@ -1,0 +1,32 @@
+---
+title: "Directories"
+icon: "📁"
+description: "Manage directories through the Directify API - retrieve all directories owned by the authenticated user."
+---
+
+## Directories
+
+### Get All Directories
+
+Retrieve all directories owned by the authenticated user.
+
+```http
+GET /api/directories
+```
+
+**Response:**
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Tech Startups Directory"
+    },
+    {
+      "id": 2,
+      "name": "Design Tools Directory"
+    }
+  ]
+}
+``` 

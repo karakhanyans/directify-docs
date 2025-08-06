@@ -1,0 +1,102 @@
+---
+title: "Custom Fields"
+icon: "⚙️"
+description: "Retrieve and manage custom fields for directories through the Directify API."
+---
+
+## Custom Fields
+
+### Get Directory Custom Fields
+
+Retrieve all custom fields for a specific directory.
+
+```http
+GET /api/directories/{directory_id}/custom-fields
+```
+
+**Parameters:**
+- `directory_id` (integer, required): The ID of the directory
+
+**Response:**
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "directory_id": 1,
+      "fieldable_type": "listing",
+      "name": "pricing",
+      "label": "Pricing",
+      "type": "text",
+      "placeholder": "Enter pricing information",
+      "description": "Pricing details for the tool",
+      "default_value": null,
+      "placement": "after_tags",
+      "placement_on_card": "before_buttons",
+      "is_required": false,
+      "is_visible": true,
+      "show_on_card": true,
+      "show_on_public_submission": false,
+      "show_label": false,
+      "show_label_on_card": true,
+      "show_icon": false,
+      "show_icon_on_card": false,
+      "icon": null,
+      "order": 1,
+      "options": null,
+      "created_at": "2024-01-15T10:30:00.000000Z",
+      "updated_at": "2024-01-15T10:30:00.000000Z"
+    },
+    {
+      "id": 2,
+      "directory_id": 1,
+      "fieldable_type": "listing",
+      "name": "job_type",
+      "label": "Job Type",
+      "type": "select",
+      "placeholder": "Select job type",
+      "description": "Type of employment",
+      "default_value": null,
+      "placement": "after_tags",
+      "placement_on_card": "before_buttons",
+      "is_required": true,
+      "is_visible": true,
+      "show_on_card": true,
+      "show_on_public_submission": true,
+      "show_label": true,
+      "show_label_on_card": true,
+      "show_icon": false,
+      "show_icon_on_card": false,
+      "icon": null,
+      "order": 2,
+      "options": [
+        "Full-time",
+        "Part-time",
+        "Contract",
+        "Freelance",
+        "Internship"
+      ],
+      "created_at": "2024-01-15T10:30:00.000000Z",
+      "updated_at": "2024-01-15T10:30:00.000000Z"
+    }
+  ]
+}
+```
+
+## Custom Field Types
+
+The API supports various custom field types:
+
+- `text` - Simple text input
+- `number` - Numeric input
+- `date` - Date picker
+- `file_upload` - File upload field
+- `url` - URL input with validation
+- `email` - Email input with validation
+- `rich_editor` - Rich text editor
+- `markdown` - Markdown editor
+- `textarea` - Multi-line text area
+- `checkbox` - Boolean toggle
+- `rating` - Rating input (0-5)
+- `select` - Dropdown with predefined options 
