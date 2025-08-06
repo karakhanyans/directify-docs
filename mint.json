@@ -118,8 +118,7 @@
     {
       "group": "API",
       "pages": [
-        "api/api"
-        
+        "api-integration/api-integration"
       ]
     }
   ],
