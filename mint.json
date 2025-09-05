@@ -86,7 +86,8 @@
         "integrations/google-sheets",
         "integrations/webhooks",
         "integrations/google-chrome-extension",
-        "integrations/seobotai"
+        "integrations/seobotai",
+        "integrations/blogbuster"
       ]
     },
     {
