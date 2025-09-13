@@ -1,0 +1,186 @@
+---
+title: 'Track directory performance with analytics integration'
+sidebarTitle: 'Analytics'
+icon: "chart-bar"
+description: 'Integrate Google Analytics, Plausible, PostHog, and other analytics services to monitor your directory performance and user behavior'
+---
+
+Understanding your directory's performance is crucial for growth and optimization. Directify supports integration with major analytics platforms to help you track user behavior, identify popular content, and make data-driven decisions about your directory.
+
+## Supported Analytics Platforms
+
+### Google Analytics
+The most comprehensive analytics solution for websites:
+- **Universal Analytics** - Traditional Google Analytics tracking
+- **Google Analytics 4 (GA4)** - Modern event-based analytics
+- **Enhanced Ecommerce** - Track paid submissions and revenue
+- **Custom Events** - Monitor specific directory actions
+
+### Plausible Analytics
+Privacy-friendly analytics with GDPR compliance:
+- **Simple Setup** - Lightweight tracking script
+- **No Cookie Banners** - GDPR compliant by default
+- **Real-time Data** - Live visitor tracking
+- **Goal Tracking** - Monitor conversion events
+
+### PostHog
+Product analytics with advanced features:
+- **Event Tracking** - Detailed user action monitoring
+- **Feature Flags** - A/B testing capabilities
+- **Session Recordings** - User behavior analysis
+- **Cohort Analysis** - User retention insights
+
+### DataFast
+Fast, reliable analytics platform:
+- **Quick Implementation** - Easy setup process
+- **Real-time Reporting** - Instant data updates
+- **Custom Dashboards** - Tailored analytics views
+- **API Access** - Data export capabilities
+
+<Frame>
+  <img src="/images/analytics-demo.png" alt="Analytics integration in Directify" />
+</Frame>
+
+## Implementation
+
+### Adding Analytics Code
+
+The analytics integration in Directify is straightforward:
+
+1. **Obtain Tracking Code** - Get your analytics script from your chosen platform
+2. **Paste Code** - Add the complete tracking script to the analytics field
+3. **Multiple Services** - Add multiple analytics services on separate lines
+4. **Save Configuration** - Apply changes to start tracking immediately
+
+### Example Implementations
+
+#### Plausible Analytics
+```html
+<script defer data-domain='yourdomain.app' src='https://plausible.io/js/script.revenue.tagged-events.js'></script>
+```
+
+#### Google Analytics 4
+```html
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GA_TRACKING_ID');
+</script>
+```
+
+#### PostHog
+```html
+<script>
+    !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]);var n=t;if("undefined"!=typeof n){for(var p=0;p<(r=["track","screen","alias","set","start","stop","resume"]).length;p++)n[r[p]]=h(n,r[p]);(o=n)}}function h(t,e){return function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.async=!0,p.src=s.api_host+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+    posthog.init('YOUR_PROJECT_API_KEY',{api_host:'https://app.posthog.com'})
+</script>
+```
+
+## Analytics Features
+
+### User Behavior Tracking
+Monitor how visitors interact with your directory:
+- **Page Views** - Track most popular pages and listings
+- **User Sessions** - Understand visit duration and engagement
+- **Bounce Rate** - Identify pages that need improvement
+- **User Flow** - See how users navigate through your directory
+
+### Performance Metrics
+Measure your directory's success:
+- **Traffic Sources** - Understand where visitors come from
+- **Search Terms** - Learn what users are looking for
+- **Conversion Rates** - Track form submissions and paid listings
+- **Mobile vs Desktop** - Optimize for preferred devices
+
+### Content Analytics
+Understand which content performs best:
+- **Popular Listings** - Identify trending directory entries
+- **Category Performance** - See which categories attract most interest
+- **Search Queries** - Understand user intent and needs
+- **Geographic Data** - Know where your audience is located
+
+## Privacy and Compliance
+
+### GDPR Compliance
+Ensure your analytics implementation respects user privacy:
+- **Cookie Policies** - Implement proper cookie consent
+- **Data Processing** - Transparent data usage policies
+- **User Rights** - Respect opt-out requests
+- **Anonymous Tracking** - Use privacy-friendly analytics when possible
+
+### Privacy-First Options
+Consider privacy-focused analytics platforms:
+- **Plausible** - No cookies, GDPR compliant
+- **Simple Analytics** - Privacy-first approach
+- **Fathom Analytics** - Cookie-free tracking
+- **Umami** - Open-source, privacy-focused
+
+## Advanced Tracking
+
+### Custom Events
+Track specific directory actions:
+- **Listing Submissions** - Monitor user-generated content
+- **Search Usage** - Understand search behavior
+- **Category Navigation** - Track category popularity
+- **Form Submissions** - Measure lead generation success
+
+### E-commerce Tracking
+For directories with paid features:
+- **Revenue Tracking** - Monitor paid submission income
+- **Conversion Funnels** - Optimize payment processes
+- **Customer Lifetime Value** - Understand user value
+- **Refund Tracking** - Monitor payment issues
+
+## Best Practices
+
+### Implementation Strategy
+1. **Start Simple** - Begin with basic page view tracking
+2. **Add Gradually** - Implement advanced features over time
+3. **Test Thoroughly** - Verify tracking is working correctly
+4. **Monitor Performance** - Ensure analytics don't slow your site
+
+### Data Analysis
+1. **Regular Review** - Check analytics data weekly
+2. **Trend Identification** - Look for patterns and changes
+3. **Action-Oriented** - Use data to make improvements
+4. **Goal Setting** - Establish measurable objectives
+
+<Warning>
+  Always ensure your analytics implementation complies with local privacy laws and regulations. Consider implementing cookie consent banners when required.
+</Warning>
+
+## Troubleshooting
+
+### Common Issues
+- **Tracking Not Working** - Verify script placement and syntax
+- **Duplicate Tracking** - Check for multiple analytics codes
+- **Slow Loading** - Optimize script loading and placement
+- **Privacy Blockers** - Understand impact of ad blockers
+
+### Testing
+- **Real-time Verification** - Check live data collection
+- **Cross-device Testing** - Ensure tracking works on all devices
+- **Browser Compatibility** - Test across different browsers
+- **Performance Impact** - Monitor site speed with analytics enabled
+
+---
+
+<CardGroup cols={2}>
+  <Card
+    title="SEO Settings"
+    icon: "magnifying-glass"
+    href="/settings/seo"
+  >
+    Optimize your directory for search engines
+  </Card>
+  <Card
+    title="General Settings"
+    icon: "cog-6-tooth"
+    href="/settings/general"
+  >
+    Configure core directory settings
+  </Card>
+</CardGroup>

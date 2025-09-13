@@ -68,7 +68,8 @@
         "listings/add-listing",
         "listings/import-export",
         "listings/custom-fields",
-        "listings/related-articles"
+        "listings/related-articles",
+        "listings/tags"
       ]
     },
     {
@@ -91,9 +92,28 @@
       ]
     },
     {
-      "group": "General Settings",
+      "group": "Ads",
       "pages": [
-        "settings/routes"
+        "ads/manage-ads"
+      ]
+    },
+    {
+      "group": "Forms",
+      "pages": [
+        "forms/create-forms"
+      ]
+    },
+    {
+      "group": "Design",
+      "pages": [
+        "design/customize-design"
+      ]
+    },
+    {
+      "group": "Settings",
+      "pages": [
+        "settings/routes",
+        "settings/analytics"
       ]
     },
     {
