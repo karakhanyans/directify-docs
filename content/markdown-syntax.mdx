@@ -1,0 +1,345 @@
+---
+title: 'Enhanced Markdown Content Syntax'
+sidebarTitle: 'Markdown Content'
+icon: "markdown"
+description: 'Master Directifys enhanced markdown syntax with custom components for iframes, FAQs, CTAs, and multimedia content integration'
+---
+
+Directify supports enhanced markdown syntax that goes beyond standard markdown capabilities. Use powerful custom components to create rich, interactive content with embedded videos, structured FAQs, call-to-action sections, and more.
+
+## Standard Markdown Support
+
+Directify fully supports all standard markdown syntax including:
+
+### Text Formatting
+- **Bold text** with `**bold**` or `__bold__`
+- *Italic text* with `*italic*` or `_italic_`
+- `Inline code` with backticks
+- ~~Strikethrough~~ with `~~text~~`
+
+### Headers
+```markdown
+# H1 Header
+## H2 Header  
+### H3 Header
+#### H4 Header
+##### H5 Header
+###### H6 Header
+```
+
+### Lists
+```markdown
+- Unordered list item
+- Another item
+  - Nested item
+  
+1. Ordered list item
+2. Second item
+   1. Nested ordered item
+```
+
+### Links and Images
+```markdown
+[Link text](https://example.com)
+![Alt text](image-url.jpg)
+```
+
+### Code Blocks
+````markdown
+```javascript
+function example() {
+    console.log("Hello World!");
+}
+```
+````
+
+<Frame>
+  <img src="/images/markdown-demo.png" alt="Markdown content examples" />
+</Frame>
+
+## Enhanced Syntax with ::: Components
+
+Directify extends markdown with custom components using the `::: @component :::` syntax. These components provide rich functionality beyond standard markdown.
+
+## Video and Media Embedding
+
+### @iframe Component
+Embed any iframe content including YouTube, Vimeo, and other multimedia:
+
+#### Syntax
+```markdown
+::: @iframe https://www.youtube.com/embed/BHshHvKmJYQ?si=MuJt--gDt3HjuHRC :::
+```
+
+#### Supported Platforms
+- **YouTube**: Use embed URLs from YouTube
+- **Vimeo**: Direct embed URLs 
+- **Google Maps**: Embed map iframes
+- **CodePen**: Interactive code demonstrations
+- **Slides**: Google Slides, SlideShare presentations
+- **Forms**: External form embeds
+- **Any iframe content**: Custom widgets, tools, etc.
+
+#### Examples
+
+**YouTube Video:**
+```markdown
+::: @iframe https://www.youtube.com/embed/dQw4w9WgXcQ :::
+```
+
+**Vimeo Video:**
+```markdown
+::: @iframe https://player.vimeo.com/video/123456789 :::
+```
+
+**Google Maps:**
+```markdown
+::: @iframe https://www.google.com/maps/embed?pb=!1m18!1m12... :::
+```
+
+#### Technical Details
+- **Responsive**: Automatically sized to full width (`w-full h-96`)
+- **Secure**: Includes proper security attributes
+- **Optimized**: Includes performance optimizations for media playback
+- **Accessible**: Proper iframe labeling and keyboard navigation
+
+<Warning>
+  Always use embed URLs from trusted sources. Avoid direct links to video files - use platform-specific embed URLs instead.
+</Warning>
+
+## FAQ Components
+
+Create structured FAQ sections with automatic schema markup for SEO benefits:
+
+### Basic FAQ Syntax
+```markdown
+::: faq
+### What's the best way to use schema markup?
+Schema markup is a game-changer for SEO. It helps search engines understand your content better and can lead to rich snippets in search results. The key is to use structured data that matches your content type.
+:::
+
+::: faq
+### How do I optimize for featured snippets?
+Focus on answering specific questions clearly and concisely. Use header tags (H2, H3) for questions and provide direct, comprehensive answers. Structure your content in lists, tables, or step-by-step formats when appropriate.
+:::
+```
+
+### Multiple FAQ Sections
+```markdown
+::: faq
+### General Questions
+Simply create an account and follow the onboarding process. Our wizard will guide you through the essential setup steps.
+
+::: faq
+### Is there a free trial?
+Yes! We offer a 14-day free trial with access to all features. No credit card required.
+:::
+
+::: faq
+### Technical Questions  
+We support JavaScript, Python, PHP, Ruby, and more. Check our documentation for the complete list.
+:::
+
+::: faq
+### Can I integrate with my existing tools?
+Absolutely! We provide APIs and webhooks for seamless integration with popular development tools.
+:::
+```
+
+### FAQ Features
+- **Automatic Schema**: SEO-optimized FAQ schema markup
+- **Collapsible Design**: User-friendly accordion interface
+- **Search Friendly**: Properly structured for search engines
+- **Mobile Optimized**: Responsive design for all devices
+
+## Call-to-Action (CTA) Components
+
+Add compelling call-to-action sections to drive user engagement:
+
+### CTA Syntax
+```markdown
+::: cta :::
+```
+
+This renders a pre-designed CTA section with:
+- Eye-catching design matching your directory theme
+- Strategic placement within content flow
+- Mobile-responsive layout
+- Conversion-optimized styling
+
+<Note>
+  CTA components use your directory's configured call-to-action content and styling. Customize the CTA design in your directory settings.
+</Note>
+
+## Best Practices for Enhanced Markdown
+
+### Content Structure
+1. **Use Headers Hierarchically** - Maintain proper H1, H2, H3 structure
+2. **Break Up Text** - Use components to create visual breaks
+3. **Balance Content** - Mix text with multimedia for engagement
+4. **Mobile-First** - Consider how content appears on mobile devices
+
+### SEO Optimization
+1. **FAQ Schema** - Use FAQ components for common questions
+2. **Descriptive Alt Text** - Always include alt text for images
+3. **Internal Linking** - Link to related content within your directory
+4. **Header Optimization** - Use descriptive, keyword-rich headers
+
+### User Experience
+1. **Progressive Disclosure** - Use FAQs to reveal information gradually
+2. **Visual Breaks** - Embed videos and media to break up text
+3. **Clear CTAs** - Strategic placement of call-to-action components
+4. **Readable Formatting** - Proper use of lists, headers, and emphasis
+
+## Component Combinations
+
+### Rich Content Example
+```markdown
+# Complete Guide to Directory Marketing
+
+Marketing your directory effectively requires a multi-channel approach. Let's explore the key strategies.
+
+## Video Overview
+
+::: @iframe https://www.youtube.com/embed/marketing-guide-123 :::
+
+## Common Questions
+
+::: faq
+### How long does it take to see results?
+Most directories see initial traffic within 2-4 weeks of implementing these strategies. Significant growth typically occurs within 3-6 months with consistent effort.
+
+### What's the most effective marketing channel?
+It depends on your niche, but content marketing combined with SEO tends to provide the best long-term ROI for directory websites.
+:::
+
+Ready to implement these strategies? 
+
+::: cta :::
+
+## Advanced Techniques
+
+For more advanced marketing techniques, check out our comprehensive guide...
+```
+
+## Technical Implementation
+
+### Where Components Work
+Enhanced markdown syntax is available in:
+- **Listing Content** - Rich descriptions with multimedia
+- **Article Content** - Blog posts with embedded media
+- **Category Descriptions** - Detailed category explanations  
+- **Custom Pages** - Landing pages and informational content
+- **Directory Descriptions** - About pages and site descriptions
+- **Ad Content** - Rich advertising content
+
+### Processing Order
+1. **Standard Markdown** - Converted to HTML first
+2. **@iframe Components** - Processed and embedded
+3. **FAQ Components** - Structured with schema markup
+4. **CTA Components** - Rendered with directory styling
+5. **Cleanup** - Remaining syntax markers removed
+
+### Performance Considerations
+- **Lazy Loading** - Iframes load efficiently
+- **Schema Caching** - FAQ schemas cached for performance
+- **Mobile Optimization** - All components responsive
+- **SEO Benefits** - Enhanced search engine visibility
+
+## Troubleshooting Common Issues
+
+### Iframe Not Loading
+- **Check URL**: Ensure you're using embed URLs, not direct links
+- **HTTPS Required**: Some platforms require secure connections
+- **Platform Restrictions**: Some sites block iframe embedding
+
+### FAQ Not Displaying
+- **Header Format**: Ensure questions use `###` (H3) headers
+- **Content Structure**: Place content directly after question headers
+- **Proper Syntax**: Check opening and closing `:::` markers
+
+### Syntax Not Processing
+- **Exact Format**: Use exact `::: component :::` syntax
+- **No Extra Spaces**: Avoid extra spaces in component declarations
+- **Case Sensitive**: Component names are case-sensitive
+
+## Migration from Standard Markdown
+
+If you have existing markdown content:
+
+1. **Backup Content** - Save original markdown files
+2. **Gradual Enhancement** - Add components incrementally
+3. **Test Thoroughly** - Preview content before publishing
+4. **Update Links** - Ensure all embedded content works
+5. **Monitor Performance** - Check loading speeds after updates
+
+<Tip>
+  Start with one component type (like @iframe) and gradually incorporate others as you become comfortable with the enhanced syntax.
+</Tip>
+
+## Advanced Examples
+
+### Product Showcase
+```markdown
+# Featured Directory Tool
+
+Meet our latest integration - a powerful tool for directory owners.
+
+::: @iframe https://www.youtube.com/embed/product-demo-456 :::
+
+## Common Questions
+
+::: faq
+### How does the integration work?
+The integration connects directly with your existing directory database, automatically syncing listings and user data in real-time.
+
+### Is technical knowledge required?
+No technical knowledge is needed. Our one-click setup process handles all the complex configuration automatically.
+:::
+
+::: cta :::
+```
+
+### Educational Content
+```markdown
+# SEO Guide for Directories
+
+## Video Tutorial
+
+::: @iframe https://www.youtube.com/embed/seo-tutorial-789 :::
+
+## Interactive Example
+
+::: @iframe https://codepen.io/example/seo-demo :::
+
+## Frequently Asked Questions
+
+::: faq
+### How often should I update my directory content?
+Regular updates are crucial for SEO. Aim for new listings weekly and refresh existing content monthly.
+
+### What's the ideal directory structure?
+A clear hierarchical structure with logical categories and subcategories works best for both users and search engines.
+:::
+```
+
+Your enhanced markdown content is now ready to engage users with rich, interactive experiences while maintaining excellent SEO performance!
+
+---
+
+<CardGroup cols={2}>
+  <Card
+    title="Add Listing"
+    icon="folder-plus"
+    href="/listings/add-listing"
+  >
+    Learn how to create rich listing content
+  </Card>
+  <Card
+    title="Custom Pages"
+    icon="document"
+    href="/custom-pages/pages"  
+  >
+    Build engaging custom pages with enhanced markdown
+  </Card>
+</CardGroup>

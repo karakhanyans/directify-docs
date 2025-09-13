@@ -132,6 +132,12 @@
       ]
     },
     {
+      "group": "Content",
+      "pages": [
+        "content/markdown-syntax"
+      ]
+    },
+    {
       "group": "Custom Pages/Links",
       "pages": [
         "custom-pages/pages",
