@@ -1,0 +1,235 @@
+---
+title: 'Lemon Squeezy Integration for Paid Submissions'
+sidebarTitle: 'Lemon Squeezy'
+description: Connect your Lemon Squeezy account to start accepting paid submissions with seamless integration and automatic plan synchronization.
+icon: 'lemon'
+---
+
+Lemon Squeezy provides a modern, developer-friendly payment platform perfect for digital businesses. This guide will walk you through integrating Lemon Squeezy with your directory to accept paid submissions with both subscription and one-time payment options.
+
+## Why Choose Lemon Squeezy?
+
+### Key Benefits
+- **Global Tax Compliance** - Automatic VAT/tax handling for worldwide sales
+- **Merchant of Record** - Lemon Squeezy handles all tax compliance
+- **Simple Setup** - Streamlined integration process
+- **Flexible Pricing** - Support for subscriptions and one-time payments
+- **Developer-Friendly** - Modern API with excellent documentation
+
+<Frame>
+  <img src="/images/lemonsqueezy-demo.png" alt="Lemon Squeezy integration setup" />
+</Frame>
+
+## 1. Enable Paid Submissions
+
+Before integrating Lemon Squeezy, you need to enable paid submissions in your directory:
+
+1. Navigate to **Settings** → **Paid Submissions**
+2. Toggle **Enable Paid Submissions** to ON
+3. Select **Lemon Squeezy** as your payment provider
+
+## 2. Create Your Lemon Squeezy Account
+
+If you don't have a Lemon Squeezy account yet:
+
+1. Visit [Lemon Squeezy](https://lemonsqueezy.com) and sign up
+2. Complete your store setup and verification process
+3. Create your first store (you'll need the Store ID later)
+
+## 3. Obtain API Credentials
+
+### API Key
+1. Log in to your [Lemon Squeezy Dashboard](https://app.lemonsqueezy.com)
+2. Navigate to **Settings** → **API**
+3. Click **Create API Key**
+4. Give your key a descriptive name (e.g., "Directify Integration")
+5. Copy the generated API key and save it securely
+
+### Store ID
+1. In your Lemon Squeezy dashboard, go to **Settings** → **Stores**
+2. Find your store and note the **Store ID** (visible in the URL or store details)
+
+## 4. Configure Lemon Squeezy Integration
+
+### Enter API Credentials
+1. In your directory's **Paid Submissions** settings
+2. Paste your **API Key** in the designated field
+3. Enter your **Store ID**
+4. Generate or enter a **Webhook Secret** (use the generate button for security)
+
+### Webhook Configuration
+1. Copy the **Webhook URL** provided in your directory settings
+2. In Lemon Squeezy, go to **Settings** → **Webhooks**
+3. Click **Create Webhook**
+4. Paste the webhook URL from your directory
+5. Enter the webhook secret you generated
+6. Select the following events:
+   - **Order events**: `order_created`, `order_refunded`
+   - **Subscription events**: `subscription_created`, `subscription_updated`, `subscription_cancelled`
+7. Save the webhook
+
+## 5. Create Products in Lemon Squeezy
+
+### For One-Time Payments
+1. Go to **Products** in your Lemon Squeezy dashboard
+2. Click **New Product**
+3. Choose **Digital Product**
+4. Set up your product details:
+   - **Name**: e.g., "Directory Listing Submission"
+   - **Price**: Set your desired amount
+   - **Description**: Describe what customers get
+5. Configure checkout settings as needed
+6. Publish your product
+
+### For Subscription Plans
+1. In **Products**, click **New Product**
+2. Choose **Subscription**
+3. Configure your subscription:
+   - **Name**: e.g., "Monthly Directory Listing"
+   - **Billing Cycle**: Monthly, yearly, etc.
+   - **Price**: Set subscription amount
+   - **Description**: Detail subscription benefits
+4. Set up trial periods if desired
+5. Publish your subscription
+
+## 6. Sync Plans with Your Directory
+
+### Automatic Plan Import
+1. In your directory's Paid Submissions settings
+2. Click **Verify Credentials and Pull Plans**
+3. Confirm the action when prompted
+4. Your Lemon Squeezy products will be automatically imported
+
+### Plan Configuration
+Once imported, you can customize each plan:
+- **Description**: Modify the plan description for your directory
+- **Button Text**: Customize the call-to-action text
+- **Features**: Add or modify feature lists
+- **Bestseller**: Mark popular plans as bestsellers
+- **Visibility**: Hide plans you don't want to offer
+
+<Warning>
+  Pulling plans from Lemon Squeezy will override any existing plans in your directory. Make sure to backup any custom configurations before syncing.
+</Warning>
+
+## 7. Test Mode vs Live Mode
+
+### Test Mode
+- Lemon Squeezy automatically provides test products for development
+- Test mode is indicated by a warning badge in your directory settings
+- No real money is processed in test mode
+- Perfect for testing the complete payment flow
+
+### Live Mode
+- Switch to live products in your Lemon Squeezy dashboard
+- Re-sync plans to pull live products
+- Real payments will be processed
+- Ensure all webhooks are working correctly
+
+## 8. User Payment Experience
+
+### Submission Flow
+1. User submits their listing to your directory
+2. They're redirected to the submission dashboard
+3. Available plans are displayed with pricing and features
+4. User selects a plan and clicks the payment button
+5. They're redirected to Lemon Squeezy's secure checkout
+6. After successful payment, they return to your directory
+7. Listing is processed according to your approval settings
+
+### Customer Benefits
+- **Secure Payments** - Industry-standard security
+- **Global Support** - Automatic currency conversion
+- **Tax Handling** - Automatic VAT/tax calculation
+- **Receipt Management** - Automatic invoice generation
+- **Payment Methods** - Credit cards, PayPal, and more
+
+## 9. Revenue and Analytics
+
+### Lemon Squeezy Dashboard
+- **Revenue Tracking** - Real-time sales data
+- **Customer Management** - Subscriber and customer lists
+- **Analytics** - Detailed sales analytics
+- **Tax Reports** - Automatic tax reporting
+- **Payout Management** - Flexible payout options
+
+### Directory Integration
+- **Automatic Updates** - Subscription status synced via webhooks
+- **Payment Verification** - Real-time payment confirmation
+- **User Management** - Automatic user access control
+
+## 10. Advanced Features
+
+### Discount Codes
+1. Create discount codes in Lemon Squeezy
+2. Codes work automatically at checkout
+3. Track usage in Lemon Squeezy analytics
+
+### Affiliate Program
+- Set up affiliate programs in Lemon Squeezy
+- Earn commissions from referrals
+- Track affiliate performance
+
+### Custom Checkout
+- Customize checkout appearance
+- Add your branding
+- Configure checkout fields
+
+## Troubleshooting
+
+### Common Issues
+
+#### Plans Not Syncing
+- Verify API key has correct permissions
+- Check Store ID is accurate
+- Ensure products are published in Lemon Squeezy
+
+#### Webhook Not Working
+- Verify webhook URL is accessible
+- Check webhook secret matches
+- Ensure all required events are selected
+
+#### Test Mode Warning
+- Switch to live products in Lemon Squeezy
+- Re-sync plans to pull live products
+- Warning will disappear automatically
+
+### Support Resources
+- [Lemon Squeezy Documentation](https://docs.lemonsqueezy.com)
+- [API Reference](https://docs.lemonsqueezy.com/api)
+- [Webhook Guide](https://docs.lemonsqueezy.com/help/webhooks)
+
+<Note>
+  Lemon Squeezy handles all tax compliance as a Merchant of Record, which means you don't need to worry about VAT, sales tax, or other regional tax requirements.
+</Note>
+
+## Next Steps
+
+Once your Lemon Squeezy integration is complete:
+
+1. **Test the Complete Flow** - Submit a test listing and complete payment
+2. **Configure Approval Process** - Set up your content review workflow
+3. **Customize Plan Features** - Tailor offerings to your audience
+4. **Monitor Performance** - Track conversions and revenue
+5. **Optimize Pricing** - Adjust plans based on performance data
+
+Your directory is now ready to accept paid submissions through Lemon Squeezy's robust payment platform!
+
+---
+
+<CardGroup cols={2}>
+  <Card
+    title="Stripe Integration"
+    icon="stripe"
+    href="/paid-submissions/stripe"
+  >
+    Learn about Stripe payment integration
+  </Card>
+  <Card
+    title="Custom Payment Provider"
+    icon="credit-card"
+    href="/paid-submissions/custom-payment"
+  >
+    Set up custom payment solutions
+  </Card>
+</CardGroup>

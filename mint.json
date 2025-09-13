@@ -119,7 +119,9 @@
     {
       "group": "Paid Submissions",
       "pages": [
-        "paid-submissions/stripe"
+        "paid-submissions/stripe",
+        "paid-submissions/lemonsqueezy",
+        "paid-submissions/custom-payment"
       ]
     },
     {
