@@ -2,84 +2,365 @@
 title: Connect your custom domain to your directory
 sidebarTitle: Custom domain
 icon: "globe"
-description: 'Complete guide to connecting your custom domain to Directify. Learn how to set up DNS records, configure domain settings, and verify domain ownership for both root domains and subdomains.'
+description: 'Complete guide to connecting your custom domain to Directify. Learn DNS setup, SSL certificates, troubleshooting, and provider-specific instructions for a professional, branded directory experience.'
 ---
 
-After creating your directory with a default subdomain, you can connect your own custom domain to make your directory more professional and branded.
+Transform your directory from a subdomain to a professional custom domain. This comprehensive guide covers everything from basic setup to advanced troubleshooting, ensuring your directory works seamlessly with your own domain.
 
-## Setting up your custom domain
+## Why Use a Custom Domain?
 
-Connecting your custom domain involves three main steps:
+### Professional Benefits
+- **Brand Recognition** - Use your own domain for stronger brand identity
+- **Trust & Credibility** - Custom domains appear more professional to visitors
+- **SEO Advantages** - Better search engine rankings and link authority
+- **Marketing Value** - Easier to remember and share your directory
+- **Email Integration** - Use the same domain for email addresses
 
-1. Add your domain in Directify settings
-2. Configure DNS records at your domain provider
-3. Wait for DNS propagation (usually 24-48 hours)
+### Domain Types Supported
+- **Root Domain** - `yourdirectory.com`
+- **Subdomain** - `tools.yourdomain.com` or `directory.yourbusiness.com`
+- **International Domains** - Full Unicode and internationalized domain support
 
 <Frame>
   <iframe width="100%" height="400" src="https://www.youtube.com/embed/ciWoGGtGvn8?si=u9AHnbWWW2lhTwMn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </Frame>
 
-### Step 1: Add Your Domain
+## Quick Setup Overview
 
-In your directories list, click on "Click to set custom domain" button.
+Connecting your custom domain involves these main steps:
 
-1. Navigate to the "Custom Domain" section
-2. Enter your domain name (e.g., `directory.com`)
-3. Click "Next" to the DNS records section
-
-You can add either:
-- A root domain (e.g., `directory.com`)
-- A subdomain (e.g., `tools.directory.com`)
-
-<Frame>
-    <img src="/images/set-custom-domain.png" alt="Adding custom domain" />
-</Frame>
+1. **Add Domain** - Configure your domain in Directify settings
+2. **DNS Configuration** - Set up DNS records at your domain provider
+3. **Verification** - Wait for DNS propagation and domain verification
+4. **SSL Certificate** - Automatic HTTPS certificate provisioning
+5. **Testing** - Verify everything works correctly
 
 <Note>
-    Make sure you own the domain before adding it. You'll need access to manage its DNS records.
+    The entire process typically takes 5-10 minutes to configure, plus 1-48 hours for DNS propagation depending on your provider.
 </Note>
 
-### Step 2: Configure DNS Records
+## Step 1: Add Your Domain in Directify
 
-After adding your domain, you'll need to configure DNS records at your domain provider (like GoDaddy, Namecheap, or Google Domains).
+### Navigate to Domain Settings
+1. Go to your **Directories** list in the Directify dashboard
+2. Find your directory and click **"Click to set custom domain"**
+3. Enter your desired domain name
+4. Choose between root domain or subdomain configuration
 
-For root domains, add this A record:
-- Type: **A**
-- Hostname: `@` or your domain (e.g. `directory.com`) 
-- Value: `159.223.235.17`
+### Domain Configuration Options
 
-For subdomains, add this CNAME record:
-- Type: **CNAME**
-- Hostname: your subdomain (e.g. `tools.directory.com`)
-- Target: `your-directory.directify.app`
-- TTL: 43200 (or provider default)
+#### Root Domain Setup
+Perfect for dedicated directories:
+- Example: `mydirectory.com`
+- Requires A record pointing to our servers
+- Best for standalone directory websites
 
-<Frame>
-    <img src="/images/set-dns.png" alt="Set DNS records" />
-</Frame>
-
-<Note>
-    If you're using a subdomain, you'll need to add a CNAME record instead of an A record.
-</Note>
-
-### Step 3: Wait for DNS Propagation
-
-After adding the records, it may take up to 24-48 hours for the changes to propagate.
-
-Once DNS records are updated, your custom domain will be active and your directory will be accessible at `https://your-domain.com`.
+#### Subdomain Setup  
+Ideal for existing websites:
+- Example: `directory.mycompany.com`
+- Requires CNAME record pointing to your Directify subdomain
+- Great for businesses adding a directory to existing sites
 
 <Frame>
-    <img src="/images/verify-domain.png" alt="Verify domain" />
+    <img src="/images/set-custom-domain.png" alt="Adding custom domain in Directify" />
 </Frame>
 
-<Note>
-    If the domain is not working, please check your DNS records and make sure they are correct. After verifying the records, you do this steps again to trigger verification process.
-</Note>
+### Domain Validation
+Directify automatically validates:
+- Domain format and syntax
+- Domain availability for use
+- Existing DNS configuration conflicts
+- SSL certificate compatibility
 
-### Verified
+## Step 2: DNS Configuration
 
-After the domain is verified, you will see a green checkmark in the Directify settings.
+### DNS Records Required
+
+#### For Root Domains (A Record)
+```
+Type: A
+Name: @ (or blank)
+Value: 159.223.235.17
+TTL: 43200 (12 hours) or Auto
+```
+
+#### For Subdomains (CNAME Record)
+```
+Type: CNAME
+Name: directory (or your chosen subdomain)
+Value: your-directory.directify.app
+TTL: 43200 (12 hours) or Auto
+```
+
+#### Optional: WWW Redirect (for root domains)
+```
+Type: CNAME
+Name: www
+Value: your-domain.com
+TTL: 43200 (12 hours) or Auto
+```
 
 <Frame>
-    <img src="/images/verified.png" alt="Verified" />
+    <img src="/images/set-dns.png" alt="DNS record configuration example" />
 </Frame>
+
+### Provider-Specific Instructions
+
+#### GoDaddy
+1. Log in to your GoDaddy account
+2. Go to **My Products** → **DNS**
+3. Click **Manage** next to your domain
+4. Add the required A or CNAME record
+5. Save changes (propagation: 1-24 hours)
+
+#### Namecheap
+1. Sign in to your Namecheap account
+2. Navigate to **Domain List** → **Manage**
+3. Go to **Advanced DNS** tab
+4. Add new record with the specified values
+5. Save all changes (propagation: 30 minutes - 24 hours)
+
+#### Cloudflare
+1. Access your Cloudflare dashboard
+2. Select your domain
+3. Go to **DNS** → **Records**
+4. Add the DNS record
+5. Set proxy status to **DNS only** (gray cloud)
+6. Save record (propagation: 5-10 minutes)
+
+#### Google Domains
+1. Open Google Domains console
+2. Select your domain
+3. Click **DNS** in the left sidebar
+4. Scroll to **Custom resource records**
+5. Add the required record
+6. Save (propagation: 1-4 hours)
+
+#### AWS Route 53
+1. Open Route 53 console
+2. Go to **Hosted zones**
+3. Select your domain
+4. Click **Create record**
+5. Configure record with required values
+6. Save changes (propagation: 1-5 minutes)
+
+<Warning>
+  Always set Cloudflare proxy status to "DNS only" (gray cloud) when using custom domains with Directify. Orange cloud proxying will prevent proper SSL certificate generation.
+</Warning>
+
+## Step 3: Verification Process
+
+### Automatic Verification
+Once DNS records are configured, Directify automatically:
+- Monitors DNS propagation status
+- Validates domain ownership
+- Provisions SSL certificates
+- Configures HTTPS redirects
+- Updates all internal links
+
+### Verification Timeline
+- **Immediate** - DNS record validation
+- **5-60 minutes** - Fast DNS providers (Cloudflare, AWS)
+- **1-4 hours** - Standard providers (Google, Namecheap)
+- **12-48 hours** - Slower providers (some registrars)
+
+### Verification Status
+Monitor progress in your Directify dashboard:
+- **Pending** - DNS records not yet detected
+- **Verifying** - Domain ownership confirmation in progress
+- **SSL Provisioning** - HTTPS certificate being generated
+- **Active** - Domain fully configured and working
+
+<Frame>
+    <img src="/images/verify-domain.png" alt="Domain verification process" />
+</Frame>
+
+## Step 4: SSL Certificate & HTTPS
+
+### Automatic SSL
+Directify automatically provides:
+- **Let's Encrypt SSL certificates** - Industry-standard encryption
+- **Automatic renewal** - Certificates renew before expiration
+- **HTTPS enforcement** - All traffic redirected to secure connection
+- **HTTP/2 support** - Faster loading for modern browsers
+
+### SSL Features
+- **Wildcard support** - Covers all subdomains automatically
+- **Grade A+ security** - Top-tier SSL configuration
+- **HSTS headers** - Enhanced security for repeat visitors
+- **Perfect forward secrecy** - Advanced cryptographic protection
+
+### Certificate Status
+Track SSL status in real-time:
+- **Pending** - Certificate request submitted
+- **Validating** - Domain control validation
+- **Issued** - Certificate active and deployed
+- **Auto-renewing** - Automatic renewal enabled
+
+## Advanced Configuration
+
+### www vs non-www Setup
+
+#### Prefer non-www (example.com)
+Most common for directories:
+1. Set up A record for root domain
+2. Add CNAME for www → example.com
+3. Directify handles automatic redirection
+
+#### Prefer www (www.example.com)
+Traditional approach:
+1. Set up CNAME for www → your-directory.directify.app
+2. Set up redirect from root to www
+3. Configure in domain provider settings
+
+### Multiple Domain Management
+- **Primary domain** - Main domain for your directory
+- **Alias domains** - Additional domains that redirect to primary
+- **Staging domains** - Test domains for development
+- **Regional domains** - Different domains for different markets
+
+### Email Configuration
+When using a custom domain, you may want email addresses:
+- **Separate email hosting** - Use providers like Google Workspace
+- **DNS MX records** - Configure email routing independently
+- **Subdomain strategy** - Use `mail.yourdomain.com` for email
+
+## Testing Your Custom Domain
+
+### Verification Checklist
+✅ **DNS Propagation** - Use tools like whatsmydns.net  
+✅ **HTTPS Access** - Verify `https://yourdomain.com` works  
+✅ **Redirect Testing** - Check HTTP → HTTPS redirection  
+✅ **Mobile Testing** - Verify on mobile devices  
+✅ **Performance** - Test loading speeds  
+✅ **Search Engines** - Submit to Google Search Console
+
+### Testing Tools
+- **DNS Checker** - whatsmydns.net, dnschecker.org
+- **SSL Testing** - ssllabs.com/ssltest/
+- **Speed Testing** - gtmetrix.com, pagespeed.web.dev
+- **Mobile Testing** - Google Mobile-Friendly Test
+
+## Troubleshooting Common Issues
+
+### DNS Not Propagating
+**Problem**: Domain not resolving after 24+ hours
+**Solutions**:
+- Verify DNS records are exactly correct
+- Check TTL settings (lower values propagate faster)
+- Clear local DNS cache: `ipconfig /flushdns` (Windows) or `sudo dscacheutil -flushcache` (Mac)
+- Try different DNS servers (8.8.8.8, 1.1.1.1)
+
+### SSL Certificate Issues
+**Problem**: "Not Secure" warning in browser
+**Solutions**:
+- Wait for certificate provisioning (up to 1 hour)
+- Verify domain is fully propagated first
+- Check for conflicting CAA records
+- Ensure no proxy services interfere
+
+### Cloudflare Configuration
+**Problem**: Domain shows Cloudflare error pages
+**Solutions**:
+- Set proxy status to "DNS only" (gray cloud)
+- Disable Cloudflare SSL/TLS encryption mode
+- Check for conflicting Page Rules
+- Verify DNS records point to correct IP
+
+### Mixed Content Warnings
+**Problem**: Some resources load over HTTP
+**Solutions**:
+- Update all internal links to HTTPS
+- Check third-party integrations
+- Review custom code for HTTP references
+- Enable HSTS in Cloudflare if used
+
+### Performance Issues
+**Problem**: Site loads slowly on custom domain
+**Solutions**:
+- Verify geographic location of DNS provider
+- Check for unnecessary redirects
+- Monitor DNS resolution times
+- Consider using Cloudflare for CDN
+
+## Domain Management
+
+### Changing Domains
+1. Add new domain following standard process
+2. Wait for full verification and SSL
+3. Update all external links and bookmarks
+4. Set up redirects from old domain
+5. Remove old domain from Directify
+
+### Domain Removal
+1. Backup any domain-specific configurations
+2. Update DNS records at provider
+3. Remove domain from Directify settings
+4. Verify site accessibility on fallback domain
+
+### Domain Transfer
+If transferring domain to new registrar:
+1. Note current DNS settings
+2. Complete domain transfer process
+3. Reconfigure DNS at new provider
+4. Verify continued functionality
+
+## Best Practices
+
+### Domain Selection
+- **Keep it short** - Easier to type and remember
+- **Avoid hyphens** - Can be confusing and less professional
+- **Use relevant keywords** - Helps with SEO and clarity
+- **Choose proper TLD** - .com for global, country codes for regional
+
+### SEO Considerations
+- **Consistent structure** - Use same domain format throughout
+- **Avoid frequent changes** - Domain changes can impact rankings
+- **Submit to Search Console** - Help Google index your custom domain
+- **Update sitemaps** - Ensure XML sitemaps reflect custom domain
+
+### Security Best Practices
+- **Enable HSTS** - Use HTTP Strict Transport Security
+- **Monitor certificates** - Set up expiration alerts
+- **Use strong DNS providers** - Choose reputable DNS services
+- **Regular audits** - Check domain and DNS configuration periodically
+
+<Tip>
+  For the best user experience, choose a domain that's easy to spell, remember, and closely related to your directory's purpose or brand.
+</Tip>
+
+## Verification Success
+
+Once your domain is fully configured, you'll see confirmation in your Directify dashboard:
+
+<Frame>
+    <img src="/images/verified.png" alt="Successfully verified custom domain" />
+</Frame>
+
+### Post-Setup Tasks
+1. **Update bookmarks** - Change any saved links to new domain
+2. **Social media** - Update profiles with new domain
+3. **Email signatures** - Update business communications
+4. **Marketing materials** - Update printed and digital materials
+5. **Analytics** - Configure tracking for new domain
+
+Your directory is now live on your custom domain with enterprise-grade SSL security and optimal performance!
+
+---
+
+<CardGroup cols={2}>
+  <Card
+    title="Subdomain Setup"
+    icon="globe-americas"
+    href="/directories/subdomain"
+  >
+    Learn about free subdomain configuration
+  </Card>
+  <Card
+    title="Directory Customization"
+    icon="paint-brush"
+    href="/directories/customize-your-directory"
+  >
+    Customize your directory design and branding
+  </Card>
+</CardGroup>
