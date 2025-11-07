@@ -1,76 +1,167 @@
 ---
 title: 'Stripe Integration for Paid Submissions'
 sidebarTitle: 'Stripe'
-description: Connect your Stripe Account to your account to start accepting paid submissions to your site and earn money with your directory.
+description: Connect your Stripe Account to your directory to start accepting paid submissions and earn money with your directory.
 icon: 'stripe'
 ---
 
-This guide will walk you through integrating Stripe with your directory to accept paid submissions. By following these steps, you can enable paid submissions, set up Stripe as the payment provider, and configure subscription and one-time payment plans.
+This guide will walk you through integrating Stripe with your directory to accept paid submissions. The setup process has been streamlined - you only need a Stripe Restricted Key, and everything else (webhook creation, product syncing) happens automatically.
+
+<Info>
+**What's New?** The integration process is now fully automated. Simply provide your Stripe Restricted Key, and the system will:
+- Create and configure webhooks automatically
+- Pull your products and prices automatically
+- Handle all the technical setup for you
+
+No more manual webhook configuration or copying multiple keys!
+</Info>
 
 ## 1. Enable Paid Submissions
 
 1. Navigate to the **Settings** section of your directory.
-2. Locate the **Paid Submissions** option.
+2. Go to **Paid Submissions**.
 3. Enable **Paid Submissions** and select **Stripe** as the payment provider.
 
-## 2. Configure Stripe API Keys
+## 2. Create a Stripe Restricted Key
 
-To integrate Stripe, you need to obtain your API keys from the Stripe dashboard.
+To integrate Stripe securely, you need to create a Restricted Key with specific permissions.
+
+### Quick Setup (Recommended)
+
+Click the button below to create a pre-configured Restricted Key with all required permissions:
+
+**[Create Restricted Key in Stripe →](https://dashboard.stripe.com/apikeys/create?name=Directify%20Paid%20Submissions&permissions%5B%5D=rak_product_read&permissions%5B%5D=rak_price_read&permissions%5B%5D=rak_plan_read&permissions%5B%5D=rak_checkout_session_write&permissions%5B%5D=rak_customer_write&permissions%5B%5D=rak_webhook_write)**
+
+This link will:
+- Pre-fill the key name as "Directify Paid Submissions"
+- Automatically select all required permissions
+- Take you directly to the Stripe key creation page
+
+### Manual Setup (Alternative)
+
+If you prefer to create the key manually:
 
 1. Log in to your **Stripe Dashboard**.
-2. Navigate to the **API Keys** section (search for "API Keys" in the dashboard search bar).
-3. Copy the following keys:
-   - **Publishable Key**
-   - **Secret Key**
-4. Paste these keys into the corresponding fields in your directory settings.
+2. Navigate to **Developers** > **API Keys**.
+3. Click **Create restricted key**.
+4. Name your key (e.g., "Directify Paid Submissions").
+5. Configure the following permissions:
 
-## 3. Configure Webhooks
+   **Required Permissions:**
+   - **Products**: Read
+   - **Prices**: Read
+   - **Plans**: Read
+   - **Checkout Sessions**: Write
+   - **Customers**: Write
+   - **Webhooks**: Write
 
-Webhooks are required for Stripe to communicate payment events with your directory.
+6. Click **Create key** and copy the generated restricted key.
 
-1. In your directory settings, locate the **Webhook URL**.
-2. Go to the **Webhooks** section in your Stripe dashboard.
-3. Click **Create Destination** and paste the **Webhook URL** provided by your directory.
-4. Select **Events** to listen to. For simplicity, select **All Events**.
-5. Click **Add Endpoint**.
-6. Once the endpoint is created, Stripe will generate a **Signing Secret**.
-7. Copy the **Signing Secret** and paste it into the corresponding field in your directory settings.
-8. Click **Verify Credentials** to ensure proper connection.
+<Note>
+The restricted key will look like `rk_live_...` for production or `rk_test_...` for testing.
+</Note>
+
+## 3. Connect Your Stripe Account
+
+1. In your directory's **Paid Submissions** settings, paste the **Restricted Key** into the designated field.
+2. The **Webhook URL** is automatically displayed - you don't need to manually configure it.
+3. Click **Verify Credentials and Pull Plans**.
+
+### What Happens Automatically
+
+When you verify your credentials, the system will:
+
+- ✅ Validate your Stripe restricted key
+- ✅ Automatically create a webhook endpoint in your Stripe account
+- ✅ Configure the webhook with the required events:
+  - `customer.subscription.created`
+  - `customer.subscription.updated`
+  - `customer.subscription.deleted`
+  - `customer.created`
+  - `checkout.session.completed`
+- ✅ Store the webhook secret securely
+- ✅ Pull all active products and prices from your Stripe account
+
+<Info>
+No manual webhook configuration needed! The webhook is created and configured automatically.
+</Info>
 
 ## 4. Create Payment Plans in Stripe
 
+Before syncing, make sure you have products set up in Stripe:
+
 1. Navigate to **Products** in your Stripe dashboard.
-2. Create a **New Product** for each submission plan.
-   - You can create **Subscription Plans** (e.g., Monthly, Yearly).
-   - You can also create **One-Time Payment Plans**.
-3. Save your products.
+2. Create products for your submission plans:
+   - **Subscription Plans**: Monthly, Yearly, etc.
+   - **One-Time Payment Plans**: Single submission fee
+3. Ensure products are marked as **Active**.
+4. Add pricing for each product.
 
-## 5. Sync Payment Plans with Your Directory
+<Tip>
+You can create multiple price points for the same product (e.g., monthly and yearly pricing).
+</Tip>
 
-Once your Stripe integration is set up, your directory will automatically fetch available plans.
+## 5. Customize Your Plans
 
-1. Verify that your plans are listed in the directory settings.
-2. You can:
-   - Modify plan **descriptions**.
-   - Change **button text**.
-   - Add **features** to display.
-   - Hide plans that you don’t want users to see.
-3. Click **Save** to finalize the setup.
+After pulling plans from Stripe, you can customize how they appear to users:
+
+1. Review the imported plans in your directory settings.
+2. For each plan, you can:
+   - Edit the **description**
+   - Customize **button text**
+   - Add **features** to display
+   - Mark plans as **bestseller**
+   - Add **text below button**
+   - Hide plans you don't want to offer
+3. Click **Save** to finalize your configuration.
 
 ## 6. User Experience for Paid Submissions
+
+Once configured, users can submit paid listings to your directory:
 
 1. A user submits their content to the directory.
 2. They are directed to the **submission dashboard**.
 3. They click **Pay and Submit for Review**.
 4. Available **plans** (subscription or one-time payments) are displayed.
-5. The user selects a plan and completes payment via Stripe.
+5. The user selects a plan and completes payment via Stripe's secure checkout.
 6. Upon successful payment, their submission is processed for review.
+
+## Test Mode vs Live Mode
+
+<Warning>
+If you use a test restricted key (`rk_test_...`), you'll see a **Test Mode** warning in your settings. Make sure to switch to your live restricted key (`rk_live_...`) when you're ready to accept real payments.
+</Warning>
+
+## Troubleshooting
+
+### Webhook Issues
+If webhooks aren't working:
+1. Check that the webhook endpoint was created successfully in your Stripe Dashboard under **Developers** > **Webhooks**.
+2. Verify the webhook URL matches the one shown in your directory settings.
+3. Ensure all required events are enabled on the webhook endpoint.
+
+### No Plans Showing Up
+If plans aren't syncing:
+1. Verify your products are marked as **Active** in Stripe.
+2. Check that each product has at least one active price.
+3. Ensure your restricted key has **Products** and **Prices** read permissions.
+4. Click **Verify Credentials and Pull Plans** again to re-sync.
+
+### Permission Errors
+If you see permission errors:
+1. Verify your restricted key has all required permissions listed in Step 2.
+2. Create a new restricted key if needed and update your settings.
 
 ## Conclusion
 
-Your directory is now integrated with Stripe, enabling seamless paid submissions. Users can choose between subscriptions and one-time payments, ensuring flexibility and convenience.
+Your directory is now integrated with Stripe using a streamlined setup process! With just a restricted key, you can:
 
-If you experience any issues, refer to the Stripe dashboard for logs and debugging information.
+- ✅ Automatically sync products and prices
+- ✅ Auto-configure webhooks
+- ✅ Accept subscriptions and one-time payments
+- ✅ Securely process payments
+
+If you experience any issues, check the Stripe dashboard for logs and debugging information, or refer to the troubleshooting section above.
 
 
 <Frame>
