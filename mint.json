@@ -104,12 +104,6 @@
       ]
     },
     {
-      "group": "Design",
-      "pages": [
-        "design/customize-design"
-      ]
-    },
-    {
       "group": "Settings",
       "pages": [
         "settings/routes",
