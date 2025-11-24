@@ -1,7 +1,7 @@
 ---
 title: 'Google Sheets Integration'
 sidebarTitle: 'Google Sheets'
-description: 'Complete guide to integrating Google Sheets with Directify. Learn how to sync listings, enable two-way synchronization, create templates, and automate daily updates for efficient directory management.'
+description: 'Complete guide to integrating Google Sheets with Directify. Learn how to sync listings with automatic two-way synchronization, create templates, handle images, and automate daily updates for efficient directory management.'
 icon: 'table'
 ---
 
@@ -31,34 +31,56 @@ After connecting, you must create a template. This ensures that all necessary fi
 > You can also manually connect your Google Sheets URL, but it will not automatically include the required fields. If you only need specific details like *name* and *URL*, you can use this option. However, using the *Create Template* function is recommended for a complete data set.
 
 ### **Step 3: Populating Your Google Sheet**
-Once the template is created, you need to:
-- Manually populate the fields and add listings.
-- Push existing listings from Directify to Google Sheets.
-- Enable two-way synchronization for real-time updates.
+Once the template is created, you can:
+- Manually populate the fields and add listings in Google Sheets.
+- Push existing listings from Directify to Google Sheets using the "Push to Google Sheets" button.
+- Pull listings from Google Sheets to Directify using the "Pull from Google Sheets" button.
 
-## **Enabling Two-Way Synchronization**
+## **Two-Way Synchronization**
 
-### **Step 4: Configuring Sync Settings**
-In the integration settings, select the *Two-Way Sync* option and click *Submit*. This feature allows you to:
-- Import existing listings into Google Sheets.
-- Modify and update listings directly from Google Sheets.
-- Sync data back to Directify, helping you create websites from Google Sheets dynamically.
+Two-way synchronization is now **automatically enabled** for all Google Sheets integrations. This means:
+- Changes made in Directify can be pushed to Google Sheets.
+- Changes made in Google Sheets can be pulled into Directify.
+- Data stays in sync between both platforms.
 
-![](https://cdn.directify.app/article/m4cscbkn6C2n2OqnFxJ09BrDTyhOWruT2zl2m4pJ.png)
+### **Manual Sync Options**
 
-Additionally, you can manually push or pull data:
-- *Push to Google Sheets:* Uploads data from Directify to Google Sheets.
-- *Pull from Google Sheets:* Fetches the latest data from Google Sheets into Directify.
+You can manually sync your data at any time using two options:
 
-### **Step 5: Updating Listings**
-To update a listing, edit the relevant field in Google Sheets and then pull data into Directify. For example, let's say you have a listing with the name "Larafast", if you change *Larafast* to *Larafast Updated Name* in Google Sheets, pulling data will reflect the update in Directify.
+- **Push to Google Sheets:** Uploads the latest data from Directify to Google Sheets.
+- **Pull from Google Sheets:** Fetches the latest data from Google Sheets into Directify.
 
-Similarly, updates made in Directify will sync back to Google Sheets when two-way synchronization is enabled.
+<Note>
+**Sync Limitation:** You can only sync every 12 hours. This includes the automated daily sync at midnight UTC. If you try to sync before 12 hours have passed, the buttons will be disabled.
+</Note>
 
-If you miss adding **slug** into your listing, or if you want it to be automatically generated, leave the column blank, and after syncing listings from Google Sheets, it will trigger another event, which will update the slug in the Google Sheet automatically, for further matching of the listings.
+### **Image Handling Options**
+
+When syncing listings, you have two mutually exclusive options for handling images:
+
+1. **Auto-Screenshot Listings:** Automatically captures screenshots from listing URLs when syncing. This requires the ScreenshotOne integration to be enabled.
+
+2. **Re-Upload Images from URLs to Internal Storage:** Downloads images from `logo_url` and `image_url` columns in your Google Sheet and stores them in your internal media library. Only downloads if no existing image is uploaded.
+
+<Note>
+These options are mutually exclusive - enabling one will automatically turn off the other. Choose the option that best fits your workflow.
+</Note>
+
+### **Updating Listings**
+
+To update a listing:
+1. Edit the relevant field in Google Sheets (e.g., change "Larafast" to "Larafast Updated Name").
+2. Click **Pull from Google Sheets** in Directify to fetch the updates.
+3. The changes will be reflected in your Directify directory.
+
+Similarly, updates made in Directify can be pushed back to Google Sheets using the **Push to Google Sheets** button.
+
+**Pro Tip:** If you leave the **slug** column blank in Google Sheets, Directify will automatically generate it after syncing. The auto-generated slug will then be synced back to your Google Sheet for future matching.
 
 ## **Automated Daily Sync**
-Directify also runs an automated sync every midnight to ensure all changes in Google Sheets are reflected. However, if you need real-time updates, you can manually pull data anytime.
+Directify automatically runs a sync every midnight (UTC) to ensure all changes in Google Sheets are reflected in your directory. This automated sync counts toward the 12-hour sync limitation.
+
+If you need updates between the automated syncs, you can manually pull or push data at any time, as long as 12 hours have passed since the last sync.
 
 ## **Final Thoughts**
 This Google Sheets integration is a simple yet powerful tool for managing and backing up your Directify listings. Whether you need a real-time sync, want to create a directory from Google Sheets, or even build a website from Google Sheets, this feature enhances efficiency and ensures your data is always up-to-date.
