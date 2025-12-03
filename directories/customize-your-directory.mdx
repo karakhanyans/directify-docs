@@ -1,106 +1,64 @@
 ---
-title: Customize your directory
-sidebarTitle: Customize
+title: Customize your directory design
+sidebarTitle: Design
 icon: "palette"
-description: 'Complete guide to customizing your directory website. Learn how to add logos, set up favicons, choose from 30+ themes, and implement custom CSS, HTML, and JavaScript for a unique brand identity.'
+description: 'Customize your directory with logos, themes, templates, and custom styling'
 ---
 
-In this section you will learn how to customize your directory with Directify, add your logo, change the theme, and more.
+## Logo & Favicon
 
-## Logo
-
-Logo is the first thing that visitors see when they visit your directory. It helps them recognize your brand right away and establishes your directory's visual identity. A well-designed logo builds trust and professionalism.
-
-You can upload your logo in several formats:
-- PNG (recommended for transparency)
-- JPG/JPEG
-- SVG (best for scalability)
-
-After uploading your logo, you have several editing options:
-- Crop to perfect dimensions
-- Resize while maintaining aspect ratio
-- Adjust brightness and contrast
-- Add padding if needed
-- Set custom alt text for accessibility
-
-We recommend using a logo that:
-- Is simple and recognizable
-- Has good contrast with the background
-- Remains clear when scaled down
-- Includes your brand name (optional)
-
-## Favicon
-A favicon is the small icon that appears in browser tabs, bookmarks, and mobile home screens when users save your directory as a shortcut. It's a crucial branding element that helps visitors quickly identify your site among their open tabs.
-
-You can upload your favicon in these formats:
-- ICO (traditional favicon format)
-- PNG (recommended for modern browsers)
-- SVG (scalable vector format)
-
-Best practices for favicons:
-- Keep it simple and recognizable at small sizes (16x16 pixels)
-- Use your logo or a simplified version of it
-- Ensure good contrast for visibility
-- Test how it looks in both light and dark browser themes
-
-After uploading, you can:
-- Crop and resize the image
-- Adjust brightness and contrast
-- Add padding if needed
-- Preview how it looks in different contexts
+Upload your logo and favicon in the settings. Supported formats: PNG, JPG, SVG, ICO.
 
 <Frame>
     <img src="/images/logo-edit.png" alt="Editing logo" />
 </Frame>
 
+## Templates
+
+Choose from [8 templates](https://directify.app/templates/) to change the overall layout and style of your directory:
+
+- **Default New** - Modern default template
+- **Aurora** - Gradient-focused design
+- **Stellar** - Space-inspired theme
+- **Default** - Classic layout
+- **Modern** - Clean, contemporary design
+- **Compact** - Dense, information-rich layout
+- **Whimsy** - Playful, creative style
+- **Job Board** - Optimized for job listings
+
 ## Themes
 
-Theme is the color scheme of your directory. You can choose from 30+ themes available, ranging from light and minimal to dark and vibrant options.
-
-Each theme includes carefully selected:
-- Primary and secondary colors
-- Background and foreground colors  
-- Accent colors for buttons and interactive elements
-- Text colors optimized for readability
-- Hover and active states
-
-Themes automatically handle both light and dark mode variations, ensuring your directory looks great regardless of user preference.
-
-Directify uses DaisyUI for themes, which provides:
-- Consistent styling across all components
-- Accessibility-friendly color combinations
-- Modern, polished aesthetics
-- Seamless dark/light mode transitions
-
-You can preview and switch themes instantly in the settings panel. Changes apply immediately across your entire directory.
-
-You can learn more about DaisyUI themes and color systems in their [documentation](https://daisyui.com/docs/themes/).
+Choose from 30+ color themes powered by [DaisyUI](https://daisyui.com/docs/themes/). Themes apply instantly across your entire directory.
 
 <Frame>
-    <img src="/images/themes.png" alt="Theme 1" />
+    <img src="/images/themes.png" alt="Themes" />
 </Frame>
----
+
+### Auto Dark Mode
+
+Enable **Auto Dark Mode** to automatically switch themes based on the user's system preference. You can select which dark theme to use when this is enabled.
+
 <Note>
-    You can also customize your directory with CSS, HTML, and JavaScript. Learn more about it below.
+Auto Dark Mode is not available for Aurora and Stellar templates as they have their own built-in dark mode handling.
 </Note>
 
-<CardGroup cols={3}>
-  <Card
-    title="Custom CSS"
-    icon="palette"
-    href="https://mintlify.com/docs/quickstart">
-    Learn how to customize your directory with CSS
-  </Card>
-  <Card
-    title="Custom HTML"
-    icon="code"
-    href="https://mintlify.com/docs/development">
-    Learn how to customize your directory with HTML
-  </Card>
-  <Card
-    title="Custom JavaScript"
-    icon="code"
-    href="https://mintlify.com/docs/development">
-    Learn how to customize your directory with JavaScript
-  </Card>
-</CardGroup>
+### Font Family
+
+Choose from 10 font families: Poppins, Inter, Roboto, Open Sans, Lato, Montserrat, Source Sans Pro, Nunito, Raleway, Ubuntu.
+
+## Custom Theme
+
+Create your own theme using the [DaisyUI Theme Generator](https://daisyui.com/theme-generator/), then paste the generated CSS into the Custom Theme field:
+
+```css
+--color-primary: oklch(71% 0.194 13.428);
+--color-secondary: oklch(71% 0.202 349.761);
+--radius-selector: 0.5rem;
+...
+```
+
+---
+
+<Note>
+You can also add custom CSS, HTML, and JavaScript to further customize your directory.
+</Note>

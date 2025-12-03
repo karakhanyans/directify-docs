@@ -16,36 +16,36 @@ When creating a custom field, you'll need to configure several settings:
 - **Resource** - Currently only Listing resource is supported
 - **Name** - Database field name (e.g., "working_hours")
 - **Label** - Display name shown to users (e.g., "Working Hours")
-- **Type** - Field type, with multiple options available:
-  - Text - Basic single-line text input
-  - Number - Numeric values only
-  - Date - Date picker input
-  - File Upload - Allow file attachments (e.g., images, pdfs, etc.)
-  - URL - Website/link input with validation
-  - Email - Email address with validation
+- **Type** - Field type options:
+  - Text - Single-line text input
+  - Number - Numeric values
+  - Date - Date picker
+  - File Upload - File attachments
+  - URL - Link with validation
+  - Email - Email with validation
   - Rich Editor - Visual rich text editor
-  - Markdown - Markdown text editor
-  - Textarea - Multi-line text input
+  - Markdown - Markdown editor
+  - Textarea - Multi-line text
   - Checkbox - True/false toggle
+  - Rating - Star rating input
+  - Select - Dropdown with custom options
+  - List - Multiple values as a list
+  - Button - Clickable button field
 - **Placeholder** - Example text shown in input (e.g., "10:00 - 18:00")
 - **Description** - Helper text explaining the field
 - **Default Value** - Pre-filled value for new listings
 
 ### Placement Options
 
-You can control where the custom field appears on the listing page:
+Control where the field appears on the listing page: After Tags, After Categories, Before Content, After Content.
 
-- After Tags
-- After Categories  
-- Before Content
-- After Content
+For listing cards: Before Categories, After Categories, Before Buttons, After Buttons.
 
-For listing cards, you can place custom fields:
+### Icons
 
-- Before Categories
-- After Categories
-- Before Buttons
-- After Buttons
+You can add an icon to your custom field:
+- **Heroicon** - Select from the Heroicon library (takes priority)
+- **Custom Icon** - Upload your own icon as a fallback
 
 ### Visibility Settings
 
@@ -57,11 +57,21 @@ Fine-tune how the field is displayed:
 - **Show Label** - Display field label on listing page
 - **Show Label on Card** - Display field label on listing cards
 - **Show on Public Submission** - Allow field input on public submission forms
-- **Filterable** - Available for Number, Checkbox and Date fields. If enabled, the field will be visible in the filters on the listings page
+- **Show Icon** - Display icon on listing page
+- **Show Icon on Card** - Display icon on listing cards
+- **Filterable** - Available for Number, Checkbox and Date fields. Enables filtering on listings page
 
+### Design Settings
+
+Customize the appearance of each custom field with the Design Settings button:
+
+- **Icon** - Size (Extra Small to XXL) and color (Primary, Secondary, Accent, etc.)
+- **Label** - Size (text-xs to text-2xl) and color
+- **Value** - Size and color
+- **Custom Classes** - Add your own Tailwind classes for full control
 
 <Frame>
-  <img src="/images/custom-fields-demo.png" alt="Custom fields configuration" />
+  <img src="/images/design-settings.png" alt="Custom fields design configuration" />
 </Frame>
 
 <Note>
