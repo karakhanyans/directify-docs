@@ -34,13 +34,13 @@ Point your domain to Directify's servers:
   **For root domains:** Some DNS providers don't support CNAME records on the root domain (`@`). In this case, look for "CNAME flattening", "ANAME", or "ALIAS" record options. Cloudflare handles this automatically. See [Root Domain Limitations](#root-domain-apex-cname-limitations) for workarounds.
 </Info>
 
-### TXT Record for Domain Ownership (Required)
+### TXT Record for SSL Verification (Required)
 
-Add this TXT record for ownership verification:
+Add this TXT record to enable SSL certificate issuance:
 
 | Type | Name | Value |
 |------|------|-------|
-| TXT | `_cf-custom-hostname.yourdomain.com` | *(Copy the value shown in the setup wizard)* |
+| TXT | `_acme-challenge.yourdomain.com` | *(Copy the value shown in the setup wizard)* |
 
 The exact name and value will be displayed in the Custom Domain setup page after you enter your domain.
 
