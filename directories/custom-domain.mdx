@@ -5,52 +5,63 @@ icon: "globe"
 description: 'Connect your custom domain to your Directify directory'
 ---
 
-<Frame>
-  <iframe width="100%" height="400" src="https://www.youtube.com/embed/ciWoGGtGvn8?si=u9AHnbWWW2lhTwMn" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</Frame>
+Custom domains allow you to use your own domain (e.g., `yourdomain.com`) instead of the default Directify subdomain. Your directory will be served over HTTPS with an automatically managed SSL certificate.
 
 ## Step 1: Add Your Domain
 
-1. Go to your **Directories** list
-2. Click **"Click to set custom domain"**
-3. Enter your domain name
+1. Go to your **Directory Settings**
+2. Click **Custom Domain** in the sidebar
+3. Enter your domain name (e.g., `yourdomain.com` or `directory.yourdomain.com`)
+4. Click **Next**
 
 <Frame>
   <img src="/images/set-custom-domain.png" alt="Adding custom domain in Directify" />
 </Frame>
 
-## Step 2: Configure DNS
+## Step 2: Configure DNS Records
 
-### For Root Domains (A Record)
-```
-Type: A
-Name: @ (or blank)
-Value: 159.223.235.17
-TTL: Auto
-```
+After entering your domain, you'll see the DNS records you need to add. Go to your domain registrar or DNS provider (e.g., Cloudflare, Namecheap, GoDaddy, Google Domains) and add the following records.
 
-### For Subdomains (CNAME Record)
-```
-Type: CNAME
-Name: directory (or your chosen subdomain)
-Value: your-directory.directify.app
-TTL: Auto
-```
+### CNAME Record (Required)
+
+Point your domain to Directify's servers:
+
+| Type | Name | Target |
+|------|------|--------|
+| CNAME | `@` or `yourdomain.com` | `custom.directify.app` |
+
+<Info>
+  **For root domains:** Some DNS providers don't support CNAME records on the root domain (`@`). In this case, look for "CNAME flattening", "ANAME", or "ALIAS" record options. Cloudflare handles this automatically. See [Root Domain Limitations](#root-domain-apex-cname-limitations) for workarounds.
+</Info>
+
+### TXT Record for Domain Ownership (Required)
+
+Add this TXT record for ownership verification:
+
+| Type | Name | Value |
+|------|------|-------|
+| TXT | `_cf-custom-hostname.yourdomain.com` | *(Copy the value shown in the setup wizard)* |
+
+The exact name and value will be displayed in the Custom Domain setup page after you enter your domain.
+
+<Warning>
+  Copy the exact values shown in your setup wizard. Each domain gets unique verification values.
+</Warning>
 
 <Frame>
   <img src="/images/set-dns.png" alt="DNS record configuration example" />
 </Frame>
 
-<Warning>
-  If using Cloudflare, set proxy status to **DNS only** (gray cloud). Orange cloud proxying will prevent SSL certificate generation.
-</Warning>
-
 ## Step 3: Wait for Verification
 
+After adding all DNS records, click **Submit** to start the verification process.
+
 DNS propagation typically takes:
-- **5-60 minutes** - Cloudflare, AWS
-- **1-4 hours** - Google, Namecheap
-- **12-48 hours** - Some registrars
+- **1-5 minutes** - Cloudflare, AWS Route 53
+- **1-4 hours** - Google Domains, Namecheap
+- **12-48 hours** - Some registrars (rare)
+
+You'll receive an email notification when your domain is verified and active.
 
 <Frame>
   <img src="/images/verify-domain.png" alt="Domain verification process" />
@@ -60,22 +71,196 @@ DNS propagation typically takes:
 
 Once DNS is verified, Directify automatically provisions a free SSL certificate. No action required - HTTPS is enabled automatically.
 
-## Verification Complete
+Your directory will be accessible at `https://yourdomain.com` within minutes of DNS verification.
 
 <Frame>
   <img src="/images/verified.png" alt="Successfully verified custom domain" />
 </Frame>
 
+---
+
+## DNS Provider Examples
+
+<AccordionGroup>
+  <Accordion title="Cloudflare">
+    1. Go to your domain's DNS settings
+    2. Click **Add record**
+    3. Add the CNAME record:
+       - Type: `CNAME`
+       - Name: `@` (or your subdomain)
+       - Target: `custom.directify.app`
+    4. Add the TXT records as shown in your setup wizard
+  </Accordion>
+
+  <Accordion title="Namecheap">
+    1. Go to **Domain List** → **Manage** → **Advanced DNS**
+    2. Click **Add New Record**
+    3. For CNAME record:
+       - Type: `CNAME`
+       - Host: `@` (for root domain) or your subdomain name
+       - Target: `custom.directify.app`
+       - TTL: Automatic
+    4. Add TXT records with the values from your setup wizard
+  </Accordion>
+
+  <Accordion title="GoDaddy">
+    1. Go to **My Products** → **DNS**
+    2. Click **Add** in the Records section
+    3. For CNAME record:
+       - Type: `CNAME`
+       - Name: `@` or your subdomain
+       - Value: `custom.directify.app`
+       - TTL: Default
+    4. Add TXT records with the values from your setup wizard
+  </Accordion>
+
+  <Accordion title="Google Domains">
+    1. Go to **DNS** in the left sidebar
+    2. Scroll to **Custom records**
+    3. Click **Manage custom records**
+    4. Add the CNAME and TXT records as shown in your setup wizard
+  </Accordion>
+</AccordionGroup>
+
+---
+
 ## Troubleshooting
 
-**DNS not propagating?**
-- Verify DNS records are correct
-- Clear local DNS cache
-- Check at [whatsmydns.net](https://whatsmydns.net)
+<AccordionGroup>
+  <Accordion title="DNS not propagating?">
+    - **Verify DNS records are correct** - Double-check all record types, names, and values
+    - **Clear local DNS cache** - Run `ipconfig /flushdns` (Windows) or `sudo dscacheutil -flushcache` (Mac)
+    - **Check propagation status** - Use [whatsmydns.net](https://whatsmydns.net) to verify your records are visible globally
+    - **Wait longer** - Some registrars take up to 48 hours to propagate changes
+  </Accordion>
 
-**SSL certificate not working?**
-- Wait up to 1 hour after DNS verification
-- Ensure Cloudflare proxy is disabled (gray cloud)
+  <Accordion title="SSL certificate not working?">
+    - **Wait up to 1 hour** after DNS verification for SSL to fully activate
+    - **Check TXT records** - Missing or incorrect TXT records prevent SSL certificate issuance
+  </Accordion>
+
+  <Accordion title="Domain shows 'Pending' for too long?">
+    - Verify all required DNS records are added (CNAME + TXT records)
+    - Check for typos in record values
+    - Ensure you're editing DNS for the correct domain
+    - Contact support on [Discord](https://discord.gg/B9hTD4kAJY) if issues persist after 24 hours
+  </Accordion>
+
+  <Accordion title="'Domain already in use' error?">
+    This domain is already connected to another Directify directory. If you own this domain and need to transfer it, contact support.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Removing a Custom Domain
+
+1. Go to **Directory Settings** → **Custom Domain**
+2. Click **Remove Domain**
+3. Confirm the removal
+
+Your directory will revert to using the default Directify subdomain. You can optionally remove the DNS records from your domain registrar.
+
+---
+
+## Advanced Configuration
+
+### Setting up www redirect
+
+To redirect `www.yourdomain.com` to `yourdomain.com`:
+
+1. Add a CNAME record:
+   - Name: `www`
+   - Target: `yourdomain.com`
+
+2. Configure a redirect in your DNS provider (if supported) or use a redirect service
+
+### Multiple domains
+
+Currently, each directory supports one custom domain. If you need multiple domains pointing to the same directory, set up redirects at the DNS level to your primary custom domain.
+
+---
+
+## Root Domain (Apex) CNAME Limitations
+
+Some DNS providers don't support CNAME records on root/apex domains (e.g., `yourdomain.com` without any subdomain). This is a technical limitation of the DNS specification, not a Directify limitation.
+
+### How to check if your provider supports it
+
+Try adding a CNAME record with `@` as the name. If your provider shows an error like "CNAME not allowed on root domain" or "Cannot add CNAME to apex", you'll need to use one of the workarounds below.
+
+### Providers that support root domain CNAME
+
+These providers support CNAME flattening, ANAME, or ALIAS records on root domains:
+
+- **Cloudflare** (free) - Automatic CNAME flattening
+- **AWS Route 53** - ALIAS records
+- **DNSimple** - ALIAS records
+- **DNS Made Easy** - ANAME records
+- **NS1** - ALIAS records
+- **Netlify DNS** - Automatic handling
+- **Vercel DNS** - Automatic handling
+
+### Providers that don't support root domain CNAME
+
+- GoDaddy (basic DNS)
+- Namecheap (basic DNS)
+- Some traditional registrar DNS services
+
+### Workarounds
+
+<AccordionGroup>
+  <Accordion title="Option 1: Use a subdomain (Easiest)">
+    Instead of `yourdomain.com`, use a www subdomain:
+    - `www.yourdomain.com`
+
+    Then set up a redirect from your root domain to the subdomain using your registrar's forwarding feature.
+  </Accordion>
+
+  <Accordion title="Option 2: Use Cloudflare DNS (Recommended)">
+    Cloudflare offers free DNS hosting with automatic CNAME flattening:
+
+    1. Create a free account at [cloudflare.com](https://cloudflare.com)
+    2. Add your domain to Cloudflare
+    3. Update your domain's nameservers to Cloudflare's (provided during setup)
+    4. Add your DNS records in Cloudflare's dashboard
+
+    <Note>
+      You don't need to transfer your domain - just point the nameservers to Cloudflare. Your domain registration stays with your current registrar.
+    </Note>
+  </Accordion>
+
+  <Accordion title="Option 3: Check for ALIAS/ANAME support">
+    Some providers offer ALIAS or ANAME records as alternatives to CNAME for root domains. Check your DNS provider's documentation for:
+    - "ALIAS record"
+    - "ANAME record"
+    - "Flattened CNAME"
+    - "Virtual CNAME"
+
+    If available, use the same target (`custom.directify.app`) with an ALIAS/ANAME record type.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Need Help?
+
+<CardGroup cols={2}>
+  <Card
+    title="Discord Community"
+    icon="discord"
+    href="https://discord.gg/B9hTD4kAJY"
+  >
+    Join our Discord for quick support
+  </Card>
+  <Card
+    title="Email Support"
+    icon="envelope"
+    href="mailto:sergey@directify.app"
+  >
+    Email us at sergey@directify.app
+  </Card>
+</CardGroup>
 
 ---
 
