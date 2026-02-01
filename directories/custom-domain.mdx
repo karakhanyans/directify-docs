@@ -203,7 +203,19 @@ These providers support CNAME flattening, ANAME, or ALIAS records on root domain
     Instead of `yourdomain.com`, use a www subdomain:
     - `www.yourdomain.com`
 
-    Then set up a redirect from your root domain to the subdomain using your registrar's forwarding feature.
+    Then set up a redirect from your root domain to the www subdomain. You have two options:
+
+    **Using your registrar's forwarding feature:**
+    Most registrars offer URL forwarding. Set up a redirect from `yourdomain.com` to `www.yourdomain.com`.
+
+    **Using wwwizer (free, no signup):**
+    If your registrar doesn't support forwarding, use [wwwizer](http://wwwizer.com) - a free service that auto-redirects to the www version:
+
+    | Type | Name | Value |
+    |------|------|-------|
+    | A | `@` | `174.129.25.170` |
+
+    That's it! Any visitor to `yourdomain.com` will be automatically redirected to `www.yourdomain.com`.
   </Accordion>
 
   <Accordion title="Option 2: Use Cloudflare DNS (Recommended)">
