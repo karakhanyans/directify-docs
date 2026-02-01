@@ -18,11 +18,11 @@ Custom domains allow you to use your own domain (e.g., `yourdomain.com`) instead
   <img src="/images/set-custom-domain.png" alt="Adding custom domain in Directify" />
 </Frame>
 
-## Step 2: Configure DNS Records
+## Step 2: Configure DNS
 
-After entering your domain, you'll see the DNS records you need to add. Go to your domain registrar or DNS provider (e.g., Cloudflare, Namecheap, GoDaddy, Google Domains) and add the following records.
+After entering your domain, you'll see the CNAME record you need to add. Go to your domain registrar or DNS provider (e.g., Cloudflare, Namecheap, GoDaddy, Google Domains) and add the following record.
 
-### CNAME Record (Required)
+### CNAME Record
 
 Point your domain to Directify's servers:
 
@@ -34,19 +34,11 @@ Point your domain to Directify's servers:
   **For root domains:** Some DNS providers don't support CNAME records on the root domain (`@`). In this case, look for "CNAME flattening", "ANAME", or "ALIAS" record options. Cloudflare handles this automatically. See [Root Domain Limitations](#root-domain-apex-cname-limitations) for workarounds.
 </Info>
 
-### TXT Record for SSL Verification (Required)
+<Info>
+  **For subdomains:** If you're setting up `directory.yourdomain.com`, use `directory` as the Name.
+</Info>
 
-Add this TXT record to enable SSL certificate issuance:
-
-| Type | Name | Value |
-|------|------|-------|
-| TXT | `_acme-challenge.yourdomain.com` | *(Copy the value shown in the setup wizard)* |
-
-The exact name and value will be displayed in the Custom Domain setup page after you enter your domain.
-
-<Warning>
-  Copy the exact values shown in your setup wizard. Each domain gets unique verification values.
-</Warning>
+Once your CNAME record is pointing to our servers, SSL will be automatically configured - no additional TXT records needed.
 
 <Frame>
   <img src="/images/set-dns.png" alt="DNS record configuration example" />
@@ -89,36 +81,33 @@ Your directory will be accessible at `https://yourdomain.com` within minutes of 
        - Type: `CNAME`
        - Name: `@` (or your subdomain)
        - Target: `custom.directify.app`
-    4. Add the TXT records as shown in your setup wizard
   </Accordion>
 
   <Accordion title="Namecheap">
     1. Go to **Domain List** → **Manage** → **Advanced DNS**
     2. Click **Add New Record**
-    3. For CNAME record:
+    3. Add the CNAME record:
        - Type: `CNAME`
        - Host: `@` (for root domain) or your subdomain name
        - Target: `custom.directify.app`
        - TTL: Automatic
-    4. Add TXT records with the values from your setup wizard
   </Accordion>
 
   <Accordion title="GoDaddy">
     1. Go to **My Products** → **DNS**
     2. Click **Add** in the Records section
-    3. For CNAME record:
+    3. Add the CNAME record:
        - Type: `CNAME`
        - Name: `@` or your subdomain
        - Value: `custom.directify.app`
        - TTL: Default
-    4. Add TXT records with the values from your setup wizard
   </Accordion>
 
   <Accordion title="Google Domains">
     1. Go to **DNS** in the left sidebar
     2. Scroll to **Custom records**
     3. Click **Manage custom records**
-    4. Add the CNAME and TXT records as shown in your setup wizard
+    4. Add the CNAME record as shown in your setup wizard
   </Accordion>
 </AccordionGroup>
 
@@ -136,11 +125,11 @@ Your directory will be accessible at `https://yourdomain.com` within minutes of 
 
   <Accordion title="SSL certificate not working?">
     - **Wait up to 1 hour** after DNS verification for SSL to fully activate
-    - **Check TXT records** - Missing or incorrect TXT records prevent SSL certificate issuance
+    - **Verify CNAME is correct** - SSL requires your domain to point to `custom.directify.app`
   </Accordion>
 
   <Accordion title="Domain shows 'Pending' for too long?">
-    - Verify all required DNS records are added (CNAME + TXT records)
+    - Verify your CNAME record is pointing to `custom.directify.app`
     - Check for typos in record values
     - Ensure you're editing DNS for the correct domain
     - Contact support on [Discord](https://discord.gg/B9hTD4kAJY) if issues persist after 24 hours
