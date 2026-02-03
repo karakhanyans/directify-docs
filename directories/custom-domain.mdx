@@ -11,34 +11,70 @@ Custom domains allow you to use your own domain (e.g., `yourdomain.com`) instead
 
 1. Go to your **Directory Settings**
 2. Click **Custom Domain** in the sidebar
-3. Enter your domain name (e.g., `yourdomain.com` or `directory.yourdomain.com`)
+3. Enter your domain name (e.g., `yourdomain.com` or `www.yourdomain.com`)
 4. Click **Next**
 
 <Frame>
   <img src="/images/set-custom-domain.png" alt="Adding custom domain in Directify" />
 </Frame>
 
-## Step 2: Configure DNS
+## Step 2: Choose Setup Method
 
-After entering your domain, you'll see the CNAME record you need to add. Go to your domain registrar or DNS provider (e.g., Cloudflare, Namecheap, GoDaddy, Google Domains) and add the following record.
+After entering your domain, you'll see two options for connecting your domain. Choose the method that works best for you.
 
-### CNAME Record
+<Tabs>
+  <Tab title="Option 1: Nameservers (Recommended)">
+    ### Change Nameservers
 
-Point your domain to Directify's servers:
+    The easiest and recommended method. Point your domain's nameservers to Directify, and we'll handle all DNS configuration automatically.
 
-| Type | Name | Target |
-|------|------|--------|
-| CNAME | `@` or `yourdomain.com` | `custom.directify.app` |
+    **Update your nameservers at your domain registrar to:**
 
-<Info>
-  **For root domains:** Some DNS providers don't support CNAME records on the root domain (`@`). In this case, look for "CNAME flattening", "ANAME", or "ALIAS" record options. Cloudflare handles this automatically. See [Root Domain Limitations](#root-domain-apex-cname-limitations) for workarounds.
-</Info>
+    | Nameserver |
+    |------------|
+    | `ns1.directify.app` |
+    | `ns2.directify.app` |
 
-<Info>
-  **For subdomains:** If you're setting up `directory.yourdomain.com`, use `directory` as the Name.
-</Info>
+    <Info>
+      **Why this is recommended:**
+      - Simplest setup - just change nameservers once
+      - We manage all DNS records for you automatically
+      - Automatic configuration for both `www` and non-`www` versions
+      - No CNAME flattening issues with root domains
+    </Info>
 
-Once your CNAME record is pointing to our servers, SSL will be automatically configured - no additional TXT records needed.
+    <Warning>
+      **Before switching nameservers:** If you have existing DNS records (like email MX records), note them down first. After switching to Directify nameservers, you'll need to contact support to add any additional records you need.
+    </Warning>
+  </Tab>
+
+  <Tab title="Option 2: CNAME Records">
+    ### Add CNAME Records
+
+    If you prefer to keep your current DNS provider (e.g., you have email or other DNS records to manage), add CNAME records manually.
+
+    **For root/apex domains (e.g., `yourdomain.com`)**, you need to add **both** records:
+
+    | Type | Name | Target |
+    |------|------|--------|
+    | CNAME | `@` or `yourdomain.com` | `custom.directify.app` |
+    | CNAME | `www` | `custom.directify.app` |
+
+    **For subdomains (e.g., `directory.yourdomain.com`)**, add only one record:
+
+    | Type | Name | Target |
+    |------|------|--------|
+    | CNAME | `directory` | `custom.directify.app` |
+
+    <Info>
+      **For root domains:** Some DNS providers don't support CNAME records on the root domain (`@`). In this case, we recommend using **Option 1 (Nameservers)** instead, or see [Root Domain Limitations](#root-domain-apex-cname-limitations) for other workarounds.
+    </Info>
+
+    <Note>
+      We automatically handle redirects between `www` and non-`www` versions of your domain. That's why both CNAME records are required for apex domains.
+    </Note>
+  </Tab>
+</Tabs>
 
 <Frame>
   <img src="/images/set-dns.png" alt="DNS record configuration example" />
@@ -46,12 +82,12 @@ Once your CNAME record is pointing to our servers, SSL will be automatically con
 
 ## Step 3: Wait for Verification
 
-After adding all DNS records, click **Submit** to start the verification process.
+After configuring your DNS (either nameservers or CNAME records), click **Submit** to start the verification process.
 
 DNS propagation typically takes:
 - **1-5 minutes** - Cloudflare, AWS Route 53
 - **1-4 hours** - Google Domains, Namecheap
-- **12-48 hours** - Some registrars (rare)
+- **24-48 hours** - Nameserver changes at some registrars
 
 You'll receive an email notification when your domain is verified and active.
 
@@ -73,41 +109,107 @@ Your directory will be accessible at `https://yourdomain.com` within minutes of 
 
 ## DNS Provider Examples
 
+### Changing Nameservers
+
+<AccordionGroup>
+  <Accordion title="Namecheap">
+    1. Go to **Domain List** → click **Manage** next to your domain
+    2. Find the **Nameservers** section
+    3. Select **Custom DNS**
+    4. Enter:
+       - `ns1.directify.app`
+       - `ns2.directify.app`
+    5. Click the green checkmark to save
+  </Accordion>
+
+  <Accordion title="GoDaddy">
+    1. Go to **My Products** → **Domains**
+    2. Click on your domain → **DNS** → **Nameservers**
+    3. Click **Change Nameservers** → **Enter my own nameservers**
+    4. Enter:
+       - `ns1.directify.app`
+       - `ns2.directify.app`
+    5. Click **Save**
+  </Accordion>
+
+  <Accordion title="Google Domains / Squarespace Domains">
+    1. Go to **DNS** in the left sidebar
+    2. Click **Custom name servers**
+    3. Enter:
+       - `ns1.directify.app`
+       - `ns2.directify.app`
+    4. Click **Save**
+  </Accordion>
+
+  <Accordion title="Porkbun">
+    1. Go to **Domain Management**
+    2. Click the dropdown next to your domain → **Edit**
+    3. Scroll to **Authoritative Nameservers**
+    4. Enter:
+       - `ns1.directify.app`
+       - `ns2.directify.app`
+    5. Click **Submit**
+  </Accordion>
+</AccordionGroup>
+
+### Adding CNAME Records
+
 <AccordionGroup>
   <Accordion title="Cloudflare">
     1. Go to your domain's DNS settings
     2. Click **Add record**
-    3. Add the CNAME record:
+    3. Add the first CNAME record:
        - Type: `CNAME`
-       - Name: `@` (or your subdomain)
+       - Name: `@`
+       - Target: `custom.directify.app`
+       - Proxy status: DNS only (gray cloud) or Proxied (orange cloud)
+    4. Add the second CNAME record:
+       - Type: `CNAME`
+       - Name: `www`
        - Target: `custom.directify.app`
   </Accordion>
 
   <Accordion title="Namecheap">
     1. Go to **Domain List** → **Manage** → **Advanced DNS**
     2. Click **Add New Record**
-    3. Add the CNAME record:
+    3. Add the first CNAME record:
        - Type: `CNAME`
-       - Host: `@` (for root domain) or your subdomain name
+       - Host: `@`
        - Target: `custom.directify.app`
        - TTL: Automatic
+    4. Add the second CNAME record:
+       - Type: `CNAME`
+       - Host: `www`
+       - Target: `custom.directify.app`
+
+    <Note>
+      Namecheap may not support CNAME on root domain. Use the **Nameservers** method instead, or see workarounds below.
+    </Note>
   </Accordion>
 
   <Accordion title="GoDaddy">
     1. Go to **My Products** → **DNS**
     2. Click **Add** in the Records section
-    3. Add the CNAME record:
+    3. Add the first CNAME record:
        - Type: `CNAME`
-       - Name: `@` or your subdomain
+       - Name: `@`
        - Value: `custom.directify.app`
        - TTL: Default
+    4. Add the second CNAME record:
+       - Type: `CNAME`
+       - Name: `www`
+       - Value: `custom.directify.app`
+
+    <Note>
+      GoDaddy may not support CNAME on root domain. Use the **Nameservers** method instead, or see workarounds below.
+    </Note>
   </Accordion>
 
-  <Accordion title="Google Domains">
+  <Accordion title="Google Domains / Squarespace Domains">
     1. Go to **DNS** in the left sidebar
     2. Scroll to **Custom records**
     3. Click **Manage custom records**
-    4. Add the CNAME record as shown in your setup wizard
+    4. Add both CNAME records as shown in your setup wizard
   </Accordion>
 </AccordionGroup>
 
@@ -120,23 +222,28 @@ Your directory will be accessible at `https://yourdomain.com` within minutes of 
     - **Verify DNS records are correct** - Double-check all record types, names, and values
     - **Clear local DNS cache** - Run `ipconfig /flushdns` (Windows) or `sudo dscacheutil -flushcache` (Mac)
     - **Check propagation status** - Use [whatsmydns.net](https://whatsmydns.net) to verify your records are visible globally
-    - **Wait longer** - Some registrars take up to 48 hours to propagate changes
+    - **Wait longer** - Nameserver changes can take up to 48 hours to propagate
   </Accordion>
 
   <Accordion title="SSL certificate not working?">
     - **Wait up to 1 hour** after DNS verification for SSL to fully activate
-    - **Verify CNAME is correct** - SSL requires your domain to point to `custom.directify.app`
+    - **Verify DNS is correct** - SSL requires your domain to point to `custom.directify.app` (CNAME) or use Directify nameservers
   </Accordion>
 
   <Accordion title="Domain shows 'Pending' for too long?">
-    - Verify your CNAME record is pointing to `custom.directify.app`
+    - Verify your DNS settings (nameservers or CNAME records)
     - Check for typos in record values
+    - If using CNAME, ensure **both** root and www records are added
     - Ensure you're editing DNS for the correct domain
     - Contact support on [Discord](https://discord.gg/B9hTD4kAJY) if issues persist after 24 hours
   </Accordion>
 
   <Accordion title="'Domain already in use' error?">
     This domain is already connected to another Directify directory. If you own this domain and need to transfer it, contact support.
+  </Accordion>
+
+  <Accordion title="Root domain CNAME not working?">
+    Many DNS providers don't support CNAME on root domains. **The easiest solution is to use the Nameservers method** (Option 1). See [Root Domain Limitations](#root-domain-apex-cname-limitations) for more details.
   </Accordion>
 </AccordionGroup>
 
@@ -148,21 +255,18 @@ Your directory will be accessible at `https://yourdomain.com` within minutes of 
 2. Click **Remove Domain**
 3. Confirm the removal
 
-Your directory will revert to using the default Directify subdomain. You can optionally remove the DNS records from your domain registrar.
+Your directory will revert to using the default Directify subdomain. You can optionally revert your nameservers or remove the DNS records from your domain registrar.
 
 ---
 
 ## Advanced Configuration
 
-### Setting up www redirect
+### WWW and Non-WWW Handling
 
-To redirect `www.yourdomain.com` to `yourdomain.com`:
+Directify automatically handles both `www.yourdomain.com` and `yourdomain.com`. No matter which version a visitor uses, they'll reach your directory. We recommend:
 
-1. Add a CNAME record:
-   - Name: `www`
-   - Target: `yourdomain.com`
-
-2. Configure a redirect in your DNS provider (if supported) or use a redirect service
+- **Using Nameservers (Option 1):** Both versions work automatically
+- **Using CNAME (Option 2):** Add both the root and `www` CNAME records
 
 ### Multiple domains
 
@@ -173,6 +277,10 @@ Currently, each directory supports one custom domain. If you need multiple domai
 ## Root Domain (Apex) CNAME Limitations
 
 Some DNS providers don't support CNAME records on root/apex domains (e.g., `yourdomain.com` without any subdomain). This is a technical limitation of the DNS specification, not a Directify limitation.
+
+<Note>
+  **Recommended Solution:** Use the **Nameservers method** (Option 1) to avoid this issue entirely. Point your nameservers to `ns1.directify.app` and `ns2.directify.app`, and we handle everything automatically.
+</Note>
 
 ### How to check if your provider supports it
 
@@ -199,39 +307,41 @@ These providers support CNAME flattening, ANAME, or ALIAS records on root domain
 ### Workarounds
 
 <AccordionGroup>
-  <Accordion title="Option 1: Use a subdomain (Easiest)">
-    Instead of `yourdomain.com`, use a www subdomain:
-    - `www.yourdomain.com`
+  <Accordion title="Option 1: Use Directify Nameservers (Recommended)">
+    The simplest solution. Change your nameservers to Directify's:
 
-    Then set up a redirect from your root domain to the www subdomain. You have two options:
+    | Nameserver |
+    |------------|
+    | `ns1.directify.app` |
+    | `ns2.directify.app` |
+
+    We'll handle all DNS configuration automatically, including the root domain issue.
+  </Accordion>
+
+  <Accordion title="Option 2: Use a www subdomain">
+    Instead of `yourdomain.com`, use `www.yourdomain.com`:
+
+    1. Set up `www.yourdomain.com` as your custom domain in Directify
+    2. Set up a redirect from your root domain to the www subdomain
 
     **Using your registrar's forwarding feature:**
     Most registrars offer URL forwarding. Set up a redirect from `yourdomain.com` to `www.yourdomain.com`.
-
-    **Using our redirect service:**
-    If your registrar doesn't support forwarding, point your root domain to our redirect server:
-
-    | Type | Name | Value |
-    |------|------|-------|
-    | A | `@` | `46.224.129.159` |
-
-    That's it! Any visitor to `yourdomain.com` will be automatically redirected to `www.yourdomain.com`.
   </Accordion>
 
-  <Accordion title="Option 2: Use Cloudflare DNS (Recommended)">
+  <Accordion title="Option 3: Use Cloudflare DNS (Free)">
     Cloudflare offers free DNS hosting with automatic CNAME flattening:
 
     1. Create a free account at [cloudflare.com](https://cloudflare.com)
     2. Add your domain to Cloudflare
     3. Update your domain's nameservers to Cloudflare's (provided during setup)
-    4. Add your DNS records in Cloudflare's dashboard
+    4. Add your CNAME records in Cloudflare's dashboard
 
     <Note>
       You don't need to transfer your domain - just point the nameservers to Cloudflare. Your domain registration stays with your current registrar.
     </Note>
   </Accordion>
 
-  <Accordion title="Option 3: Check for ALIAS/ANAME support">
+  <Accordion title="Option 4: Check for ALIAS/ANAME support">
     Some providers offer ALIAS or ANAME records as alternatives to CNAME for root domains. Check your DNS provider's documentation for:
     - "ALIAS record"
     - "ANAME record"
